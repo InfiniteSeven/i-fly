@@ -43,7 +43,7 @@ sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
-background_energy_multiplier = 0.25
+background_energy_multiplier = 0.1
 sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
@@ -96,15 +96,16 @@ script = SubResource("GDScript_ig7tw")
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, -41.79998, 23.2, -3.199997)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 1568.9001, 1629.6001, -2528.6)
 light_color = Color(0.95686275, 0.9137255, 0.60784316, 1)
+light_energy = 0.1
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 8192.0
 
 [node name="Z-Wing2" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 12.2, 19.2, 47.8)
+transform = Transform3D(4.4703484e-08, -1.0000001, 4.37114e-08, -6.169224e-16, -4.3711392e-08, -1, 1.0000001, 4.4703484e-08, -3.5527137e-15, -492.69998, 60.9, 565.69995)
 
 [node name="CSGboxes" type="Node3D" parent="."]
 

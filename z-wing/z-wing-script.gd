@@ -55,7 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if mouse_captured == true:
 		if event is InputEventMouseMotion:
 			#global_rotate(-event.relative.x, 0.02 * rotation_speed)
-			head.rotate_y(-event.relative.x * mouse_turn_speed)
+			camera.rotate_z(-event.relative.x * mouse_turn_speed)
 			camera.rotate_x(-event.relative.y * mouse_turn_speed)
 
 #			head.rotation.y = clamp(head.rotation.y, deg_to_rad(-85), (deg_to_rad(85)))
@@ -67,9 +67,9 @@ func _process(float):
 func _physics_process(delta: float) -> void:
 
 #engine
-	$MeshInstance3D/CSGCylinder3D.material.emission_energy_multiplier = (forward_speed * 0.06)
-	print ($MeshInstance3D/CSGCylinder3D.material.emission_energy_multiplier)
-
+	$MeshInstance3D/CSGCylinder3D.material.emission_energy_multiplier = (forward_speed * 0.01)
+	$MeshInstance3D/CSGCylinder3D/SpotLight3D.light_energy = (forward_speed * 0.06)
+	
 	v_x = velocity.x
 	v_y = velocity.y
 	v_z = velocity.z
