@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://nn7xoviy7d4p"]
+
+[ext_resource type="Script" uid="uid://cxm7h1ld1wcpu" path="res://z-wing/z_wing.gd" id="1_tlwja"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwja"]
+albedo_color = Color(0.38431373, 0.18039216, 0.2784314, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tlwja"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iv1rc"]
+
+[node name="Z-Wing" type="CharacterBody3D"]
+script = ExtResource("1_tlwja")
+has_gravity = false
+can_freefly = true
+freefly_speed = 10.0
+input_left = "left"
+input_right = "right"
+input_forward = "forward"
+input_back = "back"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_tlwja")
+mesh = SubResource("SphereMesh_tlwja")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_iv1rc")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)

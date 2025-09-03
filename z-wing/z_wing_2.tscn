@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=3 uid="uid://hn7oy0sdobni"]
+
+[ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_u574x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u574x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwja"]
+albedo_color = Color(0.972549, 0.39215687, 0.1254902, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_u574x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wddh3"]
+albedo_color = Color(1, 0.72156864, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h6aty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umei7"]
+albedo_color = Color(0.9607843, 0.49019608, 0.54901963, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3glf7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i75gd"]
+albedo_color = Color(0.47843137, 0.5803922, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vac4v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ne"]
+emission_enabled = true
+emission = Color(0.98039216, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[node name="Z-Wing2" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_u574x")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 5.2453668e-08)
+shape = SubResource("CylinderShape3D_u574x")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, -3)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 4.5, -2)
+fov = 90.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tlwja")
+mesh = SubResource("TubeTrailMesh_u574x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4666667, 6.119595e-08)
+material_override = SubResource("StandardMaterial3D_wddh3")
+mesh = SubResource("CapsuleMesh_h6aty")
+
+[node name="MeshInstance3D1" type="MeshInstance3D" parent="MeshInstance3D/MeshInstance3D"]
+transform = Transform3D(-4.371139e-08, -5, 0, 1, -2.1855695e-07, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_umei7")
+mesh = SubResource("CylinderMesh_3glf7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.25, 0, 0, 0, -0.07844019, -0.49809736, 0, 0.8965752, -0.043577883, 0, 0.35, -0.6)
+material_override = SubResource("StandardMaterial3D_i75gd")
+mesh = SubResource("CylinderMesh_vac4v")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 7.993606e-15, 0, -1.110223e-16, 1, 0, 0.5, -6.556708e-08)
+material = SubResource("StandardMaterial3D_mw4ne")
