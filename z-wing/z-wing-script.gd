@@ -1,6 +1,11 @@
 extends CharacterBody3D
 
+class_name z_wing
+
 var mouse_captured : bool = false
+
+@onready var radar_counter = 0
+
 
 @export_group("Speeds")
 const key_turn_speed = 0.05
@@ -13,18 +18,14 @@ const mouse_turn_speed = 0.002
 @export var speed_r = 0.0
 @export var speed_p = 0.0
 @export var speed_y = 0.0
-@export var v_x : float
-@export var v_y : float
-@export var v_z : float
 var gravity = 1
+
+@export var z_volume : float
 
 @onready var head = $Head
 @onready var camera = $Camera3D
 
-@export var x_angle = rad_to_deg(0)
-@export var y_angle = rad_to_deg(0)
-@export var z_angle = rad_to_deg(0)
-
+@export_group("Movement")
 var roll_left
 var max_roll_left
 var roll_right
@@ -67,12 +68,8 @@ func _process(float):
 func _physics_process(delta: float) -> void:
 
 #engine
-	$MeshInstance3D/CSGCylinder3D.material.emission_energy_multiplier = (forward_speed * 0.01)
-	$MeshInstance3D/CSGCylinder3D/SpotLight3D.light_energy = (forward_speed * 0.06)
-	
-	v_x = velocity.x
-	v_y = velocity.y
-	v_z = velocity.z
+	$MeshInstance3D/Engine.material.emission_energy_multiplier = (forward_speed * 0.01)
+	$MeshInstance3D/Engine/Engine.light_energy = (forward_speed * 0.06)
 
 #roll
 	roll_left = Input.get_action_strength("roll left")
@@ -92,7 +89,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		if roll_speed > 0:
 			roll_speed -= 0.02
-	
 
 	if forward_speed < 150:
 		max_roll_right = forward_speed / -50
@@ -152,9 +148,9 @@ func _physics_process(delta: float) -> void:
 	yaw_right = Input.get_action_strength("yaw right")
 
 	if forward_speed < 150:
-		max_yaw_left = forward_speed / 400
+		max_yaw_left = forward_speed / 300
 	else:
-		max_yaw_left = ((forward_speed / 400) - ((forward_speed - 150) / 400) *2)
+		max_yaw_left = ((forward_speed / 300) - ((forward_speed - 150) / 300) *2)
 	if Input.is_action_pressed("yaw left"):
 		#print ("max yaw left " + str(max_yaw_left).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
@@ -166,10 +162,11 @@ func _physics_process(delta: float) -> void:
 		if yaw_speed > 0:
 			yaw_speed -= 0.01
 
+
 	if forward_speed < 150:
-		max_yaw_right = forward_speed / -400
+		max_yaw_right = forward_speed / -300
 	else:
-		max_yaw_right = ((forward_speed / -400) + ((forward_speed - 150) / 400) * 2)
+		max_yaw_right = ((forward_speed / -300) + ((forward_speed - 150) / 300) * 2)
 	if Input.is_action_pressed("yaw right"):
 		#print ("max yaw right " + str(max_yaw_right).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
@@ -189,8 +186,6 @@ func _physics_process(delta: float) -> void:
 		
 
 	global_rotate(transform.basis.z, -1 * yaw_speed * delta)
-
-
 
 #combined speed
 	speed_p = pitch_speed
@@ -225,11 +220,6 @@ func _physics_process(delta: float) -> void:
 		if forward_speed > 0 :
 			forward_speed -= 1 * brakes
 
-
-
-#	if forward_speed > 0:
-#		forward_speed += (10)
-
 	# Add the gravity.
 #	if not is_on_floor():
 #		if velocity.y < 56:
@@ -256,31 +246,26 @@ func _physics_process(delta: float) -> void:
 		if forward_speed > 0:
 			forward_speed -= 0.01
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var dir := Input.get_vector("left", "right", "forward", "back")
-	#var motion = (head.global_basis * Vector3(dir.x, 0, dir.y)).normalized()
 	var motion = (head.global_basis * Vector3(0, 0, -1)).normalized()
 	motion *= forward_speed * delta
-	if motion:
-		velocity.x = lerp(velocity.x, 0.0, forward_speed)
-##		velocity.x = motion.x * forward_speed
-		#velocity.y = direction.y * SPEED
-		velocity.z = lerp(velocity.z, 0.0, forward_speed)
-##		velocity.z = motion.z * forward_speed
-#	else:
-		velocity.x = move_toward(velocity.x, 0, 0.1)
-		#velocity.y = move_toward(velocity.y, 0, 0.2) 
-		velocity.z = move_toward(velocity.z, 0, 0.1)
+
 	move_and_collide(motion)
 
-	#camera head
-	#if Input.is_action_pressed("look left"):
-	#	head.rotate_y(1 * key_turn_speed)
-	#if Input.is_action_pressed("look right"):
-	#	head.rotate_y(-1 * key_turn_speed)
-
 	move_and_slide()
+
+	if radar_counter > 600:
+		$HUD/Detected.show()
+		$HUD/WarningTimer.start()
+
+	if radar_counter < 600:
+		warning_hide()
+
+	if forward_speed > 1:
+		z_volume = 0.001 * forward_speed
+	else:
+		z_volume = 0
+	$AudioStreamPlayer.volume_linear = z_volume
+
 
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -289,3 +274,20 @@ func capture_mouse():
 func release_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
+
+func update_speed():
+	$HUD/Speed.text = ("Speed ") + str(forward_speed).pad_decimals(0)
+	$HUD/Altitude.text = ("Altitude ") + str(position.y).pad_decimals(0)
+#	$HUD/Pitch.text = ("Pitch ") + str(($"Z-Wing2".rotation_degrees.x - 90) * -1).pad_decimals(0)
+#	$HUD/Roll.text = ("Roll ") + str($"Z-Wing2".rotation_degrees.z).pad_decimals(0)
+
+func warning_hide():
+	$HUD/Detected.hide()
+
+func sam_hit_z(body_entered):
+	get_parent().sam_hit()
+	print ("sam hit z")
+
+func warning_start():
+		$AudioStreamPlayer2.playing = true
+		#$AudioStreamPlayer2.autoplay = true

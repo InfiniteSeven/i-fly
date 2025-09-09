@@ -1,33 +1,178 @@
-[gd_scene load_steps=5 format=3 uid="uid://nn7xoviy7d4p"]
+[gd_scene load_steps=16 format=3 uid="uid://hn7oy0sdobni"]
 
-[ext_resource type="Script" uid="uid://cxm7h1ld1wcpu" path="res://z-wing/z_wing.gd" id="1_tlwja"]
+[ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_u574x"]
+[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://jet.wav" id="2_2brfk"]
+[ext_resource type="AudioStream" uid="uid://bihke02v1j0jo" path="res://RWR Radar Track Sound Effect.mp3" id="2_vl01y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mw4ne"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u574x"]
+height = 6.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwja"]
-albedo_color = Color(0.38431373, 0.18039216, 0.2784314, 1)
+albedo_color = Color(0.972549, 0.39215687, 0.1254902, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_tlwja"]
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_u574x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_iv1rc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wddh3"]
+albedo_color = Color(1, 0.72156864, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h6aty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umei7"]
+albedo_color = Color(0.9607843, 0.49019608, 0.54901963, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3glf7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i75gd"]
+albedo_color = Color(0.47843137, 0.5803922, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vac4v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ne"]
+emission_enabled = true
+emission = Color(0.98039216, 0, 0, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_texo7"]
+radius = 14.7
 
 [node name="Z-Wing" type="CharacterBody3D"]
-script = ExtResource("1_tlwja")
-has_gravity = false
-can_freefly = true
-freefly_speed = 10.0
-input_left = "left"
-input_right = "right"
-input_forward = "forward"
-input_back = "back"
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+collision_layer = 3
+script = ExtResource("1_u574x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_tlwja")
-mesh = SubResource("SphereMesh_tlwja")
+[node name="WCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.3113416e-07, -5.0000005, -1.9411756e-23, 3, -2.1855695e-07, 1.7763568e-15, 0, -2.5410988e-21, 0.5, 9.177452e-16, -1.4, 7.1054274e-15)
+shape = SubResource("CylinderShape3D_mw4ne")
 
-[node name="Collider" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_iv1rc")
+[node name="FCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4999999, 5.2453665e-08)
+shape = SubResource("CylinderShape3D_u574x")
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, -3)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7.999988, -2)
+fov = 90.0
+far = 8000.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_tlwja")
+mesh = SubResource("TubeTrailMesh_u574x")
+
+[node name="Fuselage" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4666667, 6.119595e-08)
+material_override = SubResource("StandardMaterial3D_wddh3")
+mesh = SubResource("CapsuleMesh_h6aty")
+
+[node name="Wing" type="MeshInstance3D" parent="MeshInstance3D/Fuselage"]
+transform = Transform3D(-4.371139e-08, -5, 0, 1, -2.1855695e-07, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_umei7")
+mesh = SubResource("CylinderMesh_3glf7")
+
+[node name="Stabilizer" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.25, 0, 0, 0, -0.07844019, -0.49809736, 0, 0.8965752, -0.043577883, 0, 0.35, -0.6)
+material_override = SubResource("StandardMaterial3D_i75gd")
+mesh = SubResource("CylinderMesh_vac4v")
+
+[node name="Engine" type="CSGCylinder3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 7.993606e-15, 0, -1.110223e-16, 1, 0, 0.5, -6.556708e-08)
+material = SubResource("StandardMaterial3D_mw4ne")
+
+[node name="Engine" type="SpotLight3D" parent="MeshInstance3D/Engine"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 6.666664, -8.742234e-09)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+spot_range = 35.043
+spot_angle = 85.0
+
+[node name="SamHitbox" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SamHitbox"]
+shape = SubResource("SphereShape3D_texo7")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Speed" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 500.0
+offset_right = 922.0
+offset_bottom = 639.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+
+[node name="Altitude" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 500.0
+offset_right = 1322.0
+offset_bottom = 639.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+
+[node name="Pitch" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 422.0
+offset_bottom = 439.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+
+[node name="Roll" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 450.0
+offset_right = 422.0
+offset_bottom = 589.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+
+[node name="Detected" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 600.0
+offset_top = 200.0
+offset_right = 1389.0
+offset_bottom = 375.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 128
+text = "!ВНИМАНИЕ"
+
+[node name="WarningTimer" type="Timer" parent="HUD"]
+one_shot = true
+
+[node name="HudTimer" type="Timer" parent="HUD"]
+wait_time = 0.25
+autostart = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_vl01y")
+volume_db = -10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2brfk")
+volume_db = -80.0
+autoplay = true
+
+[connection signal="body_entered" from="SamHitbox" to="." method="sam_hit_z"]
+[connection signal="timeout" from="HUD/WarningTimer" to="." method="warning_hide"]
+[connection signal="timeout" from="HUD/HudTimer" to="." method="update_speed"]

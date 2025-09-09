@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bihke02v1j0jo"
+path="res://.godot/imported/RWR Radar Track Sound Effect.mp3-a795f360a8ea9ed0966cb964c5827bf1.mp3str"
+
+[deps]
+
+source_file="res://RWR Radar Track Sound Effect.mp3"
+dest_files=["res://.godot/imported/RWR Radar Track Sound Effect.mp3-a795f360a8ea9ed0966cb964c5827bf1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

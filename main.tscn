@@ -1,35 +1,25 @@
 [gd_scene load_steps=15 format=4 uid="uid://4ylkv5tiu1a5"]
 
-[ext_resource type="PackedScene" uid="uid://hn7oy0sdobni" path="res://z-wing/z_wing_2.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://hn7oy0sdobni" path="res://z-wing/z_wing.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cefnokpjnhl27" path="res://bw-grunge-texture-4.jpg" id="2_0xm2m"]
-[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://jet.wav" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cg8n1riwughxg" path="res://sam.tscn" id="4_1bvp3"]
 
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 resource_name = "main script"
 script/source = "extends Node3D
 
-var z_volume
+var z_position : Vector3
+@onready var missile_node = preload(\"res://missile/missile.tscn\")
 
 func _ready() -> void:
-	$AudioStreamPlayer.playing = true
-	z_volume = 0
-
-
-func _physics_process(_delta) -> void:
-	if $\"Z-Wing2\".forward_speed > 1:
-		z_volume = 0.001 * $\"Z-Wing2\".forward_speed
-	else:
-		z_volume = 0
-	$AudioStreamPlayer.volume_linear = z_volume
-	#print (\"z volume \" + str(z_volume))
-	#print (\"volume \" + str($AudioStreamPlayer.volume_linear))
 	pass
 
-func update_speed():
-	$HUD/Speed.text = (\"Speed \") + str($\"Z-Wing2\".forward_speed).pad_decimals(0)
-	$HUD/Altitude.text = (\"Altitude \") + str($\"Z-Wing2\".position.y).pad_decimals(0)
-#	$HUD/Pitch.text = (\"Pitch \") + str(($\"Z-Wing2\".rotation_degrees.x - 90) * -1).pad_decimals(0)
-#	$HUD/Roll.text = (\"Roll \") + str($\"Z-Wing2\".rotation_degrees.z).pad_decimals(0)
+func _physics_process(_delta) -> void:
+	z_position = $\"Z-Wing\".global_position
+
+
+func sam_hit():
+	queue_free()
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -43,7 +33,7 @@ sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
-background_energy_multiplier = 0.1
+background_energy_multiplier = 0.52
 sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
@@ -98,28 +88,31 @@ environment = SubResource("Environment_h2yge")
 [node name="DirectionLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 1568.9001, 1629.6001, -2528.6)
 light_color = Color(0.95686275, 0.9137255, 0.60784316, 1)
-light_energy = 0.1
+light_energy = 0.51
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 8192.0
 
-[node name="Z-Wing2" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(4.4703484e-08, -1.0000001, 4.37114e-08, -6.169224e-16, -4.3711392e-08, -1, 1.0000001, 4.4703484e-08, -3.5527137e-15, -492.69998, 60.9, 565.69995)
+[node name="Z-Wing" parent="." instance=ExtResource("1_ig7tw")]
+transform = Transform3D(-0.9848076, -0.17364833, 7.590417e-09, -1.4916068e-15, -4.3711395e-08, -1, 0.17364833, -0.9848076, 4.304731e-08, -103.2, 1061.3, -1513.2999)
+
+[node name="SAM" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1162.1, 0, 212.29999)
 
 [node name="CSGboxes" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGboxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.2001, -3.5, 670.30005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 641.2001, -45.45, 670.30005)
 material_override = SubResource("StandardMaterial3D_ig7tw")
 use_collision = true
-size = Vector3(2269.2, 1, 2529.2)
+size = Vector3(2269.2, 84.9, 2529.2)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGboxes"]
 use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="CSGboxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.45, 135.3, -48.550003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -103.55, 135.3, -48.550003)
 use_collision = true
 size = Vector3(196.5, 269.6, 94.700005)
 material = SubResource("StandardMaterial3D_1bvp3")
@@ -195,79 +188,18 @@ use_collision = true
 size = Vector3(196.5, 269.6, 94.700005)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="CSGboxes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65, 2.9500003, -1.3000001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.050001, 2.9500003, -1.3000001)
 material_override = SubResource("StandardMaterial3D_0xm2m")
 use_collision = true
 size = Vector3(3.3, 4.9, 0.2)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGboxes"]
-transform = Transform3D(0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0, 1, 10.75, 3.5500002, -1.3000001)
+transform = Transform3D(0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0, 1, 27.15, 3.5500002, -1.3000001)
 material_override = SubResource("StandardMaterial3D_h2yge")
 use_collision = true
 size = Vector3(3.3, 4.9, 0.2)
-
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Speed" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 500.0
-offset_right = 922.0
-offset_bottom = 639.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-
-[node name="Altitude" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 1000.0
-offset_top = 500.0
-offset_right = 1322.0
-offset_bottom = 639.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-
-[node name="Pitch" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 300.0
-offset_right = 422.0
-offset_bottom = 439.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-
-[node name="Roll" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 450.0
-offset_right = 422.0
-offset_bottom = 589.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.25
-autostart = true
 
 [node name="VoxelGI" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 717.35, 143.00003, 629.65)
 size = Vector3(2497.7, 349.6, 2649.1)
 data = SubResource("VoxelGIData_4ucfr")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_h2yge")
-volume_db = -80.0
-autoplay = true
-
-[connection signal="timeout" from="Timer" to="." method="update_speed"]
