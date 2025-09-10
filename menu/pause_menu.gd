@@ -21,4 +21,5 @@ func main_menu():
 	#get_parent().get_tree().paused = true
 	#^ doesn't work, need to fix, menu process currently set to always
 	get_parent().get_parent().show()
+	get_parent().get_parent().main_menu.show()
 	get_parent().queue_free()

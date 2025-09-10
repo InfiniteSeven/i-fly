@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export_group("Missle Knows")
 @export var g_position : Vector3
 @export var t_position : Vector3
-@export var z_wing_position : Vector3
+@export var z_wing_pos : Vector3
 @export var new_z_position : Vector3
 @export var old_z_position : Vector3
 @export var fut_z_position : Vector3
@@ -27,15 +27,15 @@ func _physics_process(delta: float) -> void:
 	var motion = (head.global_basis * Vector3(0, 0, -1)).normalized()
 	motion *= speed * delta
 
-	var new_transform = self.transform.looking_at(z_wing_position-(get_parent().global_position), Vector3.UP)
-	self.transform = self.transform.interpolate_with(new_transform, 0.1)
+	var new_tran = self.transform.looking_at(z_wing_pos-(get_parent().global_position), Vector3.UP)
+	self.transform = self.transform.interpolate_with(new_tran, 0.1)
 
 	move_and_collide(motion)
 	move_and_slide()
 
 	g_position = self.global_position
 	t_position =  - self.global_position
-	z_wing_position = get_parent().get_parent().z_position
+	z_wing_pos = get_parent().get_parent().z_position
 
 #z-wing
 
@@ -96,7 +96,7 @@ func look_at2():
 
 	#var new_transform = self.transform.looking_at(fut_z_position, Vector3.UP)
 	#self.transform = self.transform.interpolate_with(new_transform, 0.04)
-	new_z_position = z_wing_position
+	new_z_position = z_wing_pos
 	fut_z_position = new_z_position + ((new_z_position - old_z_position ))
 	#print (self.position.angle_to(fut_z_position))
 	#ADD IN MULTIPLE STEPS BY RANGE
@@ -106,3 +106,6 @@ func look_at2():
 	# AT CLOSE RANGE, 2
 	# ELIMINATE NEAR CONTACT
 	# ALTERNATIVELY, HAVE THE MULTIPLIER BE A FUNCTION OF THE RANGE?
+
+func expire():
+	$".".queue_free()

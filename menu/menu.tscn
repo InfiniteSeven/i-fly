@@ -8,25 +8,46 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_j0t7f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_top = 296.0
 offset_right = 1920.0
 offset_bottom = 778.0
 
-[node name="PLAY" type="Button" parent="VBoxContainer"]
+[node name="PLAY" type="Button" parent="MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "PLAY"
 
-[node name="EXIT" type="Button" parent="VBoxContainer"]
+[node name="EXIT" type="Button" parent="MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "EXIT"
 
-[connection signal="button_up" from="VBoxContainer/PLAY" to="." method="play"]
-[connection signal="button_up" from="VBoxContainer/EXIT" to="." method="quit"]
+[node name="DeathScreen" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 625.0
+
+[node name="Label" type="Label" parent="DeathScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 64
+text = "You died."
+
+[node name="Button" type="Button" parent="DeathScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "MAIN MENU"
+
+[connection signal="button_up" from="MainMenu/PLAY" to="." method="play"]
+[connection signal="button_up" from="MainMenu/EXIT" to="." method="quit"]
+[connection signal="button_up" from="DeathScreen/Button" to="." method="death_to_main"]

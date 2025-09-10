@@ -23,7 +23,9 @@ func _physics_process(_delta) -> void:
 	z_position = $\"Z-Wing\".global_position
 
 func sam_hit():
-	get_tree().quit()
+	get_parent().show()
+	get_parent().death_screen.show()
+	$\".\".queue_free()
 
 func pause_menu():
 	$PauseMenu.show()

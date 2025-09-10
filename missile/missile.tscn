@@ -50,4 +50,9 @@ shape = SubResource("CylinderShape3D_nhnjh")
 wait_time = 0.125
 autostart = true
 
+[node name="MissileLife" type="Timer" parent="."]
+wait_time = 9.4
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="look_at2"]
+[connection signal="timeout" from="MissileLife" to="." method="expire"]
