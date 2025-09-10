@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://hn7oy0sdobni"]
 
 [ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_u574x"]
-[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://jet.wav" id="2_2brfk"]
-[ext_resource type="AudioStream" uid="uid://bihke02v1j0jo" path="res://RWR Radar Track Sound Effect.mp3" id="2_vl01y"]
+[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://z-wing/jet.wav" id="2_2brfk"]
+[ext_resource type="AudioStream" uid="uid://bihke02v1j0jo" path="res://z-wing/RWR Radar Track Sound Effect.mp3" id="2_vl01y"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mw4ne"]
 
@@ -35,7 +35,7 @@ emission = Color(0.98039216, 0, 0, 1)
 emission_energy_multiplier = 16.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_texo7"]
-radius = 14.7
+radius = 10.5
 
 [node name="Z-Wing" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -54,7 +54,7 @@ shape = SubResource("CylinderShape3D_u574x")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, -3)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7.999988, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 24.099989, -2.0000005)
 fov = 90.0
 far = 8000.0
 

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://c17ffjmha2joh"]
+
+[ext_resource type="Script" uid="uid://chyhwih80x50p" path="res://menu/pause_menu.gd" id="1_inj1j"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_inj1j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 296.0
+offset_right = 1920.0
+offset_bottom = 1086.0
+
+[node name="Resume" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "RESUME"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "MAIN MENU
+"
+
+[connection signal="button_up" from="VBoxContainer/Resume" to="." method="resume"]
+[connection signal="button_up" from="VBoxContainer/Menu" to="." method="main_menu"]

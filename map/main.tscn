@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://4ylkv5tiu1a5"]
+[gd_scene load_steps=16 format=4 uid="uid://4ylkv5tiu1a5"]
 
-[ext_resource type="PackedScene" uid="uid://hn7oy0sdobni" path="res://z-wing/z_wing.tscn" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cefnokpjnhl27" path="res://bw-grunge-texture-4.jpg" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cg8n1riwughxg" path="res://sam.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://hn7oy0sdobni" path="res://z-wing/z_wing.tscn" id="1_2g53n"]
+[ext_resource type="PackedScene" uid="uid://c17ffjmha2joh" path="res://menu/pause_menu.tscn" id="1_ukg08"]
+[ext_resource type="PackedScene" uid="uid://cg8n1riwughxg" path="res://sam/sam.tscn" id="2_ukg08"]
+[ext_resource type="Texture2D" uid="uid://cefnokpjnhl27" path="res://map/bw-grunge-texture-4.jpg" id="3_kdw7h"]
 
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 resource_name = "main script"
@@ -14,12 +15,19 @@ var z_position : Vector3
 func _ready() -> void:
 	pass
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"escape\"):
+		pause_menu()
+
 func _physics_process(_delta) -> void:
 	z_position = $\"Z-Wing\".global_position
 
-
 func sam_hit():
-	queue_free()
+	get_tree().quit()
+
+func pause_menu():
+	$PauseMenu.show()
+	get_tree().paused = true
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -51,12 +59,12 @@ metallic = 0.34
 normal_scale = -1.19
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
-albedo_texture = ExtResource("2_0xm2m")
+albedo_texture = ExtResource("3_kdw7h")
 uv1_scale = Vector3(0.002, 0.002, 0.002)
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lquwl"]
-albedo_texture = ExtResource("2_0xm2m")
+albedo_texture = ExtResource("3_kdw7h")
 uv1_scale = Vector3(0.002, 0.002, 0.002)
 uv1_offset = Vector3(0, 500, 0)
 uv1_triplanar = true
@@ -94,11 +102,11 @@ shadow_enabled = true
 directional_shadow_mode = 0
 directional_shadow_max_distance = 8192.0
 
-[node name="Z-Wing" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Z-Wing" parent="." instance=ExtResource("1_2g53n")]
 transform = Transform3D(-0.9848076, -0.17364833, 7.590417e-09, -1.4916068e-15, -4.3711395e-08, -1, 0.17364833, -0.9848076, 4.304731e-08, -103.2, 1061.3, -1513.2999)
 
-[node name="SAM" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1162.1, 0, 212.29999)
+[node name="SAM" parent="." instance=ExtResource("2_ukg08")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.099915, 0, 212.29999)
 
 [node name="CSGboxes" type="Node3D" parent="."]
 
@@ -203,3 +211,6 @@ size = Vector3(3.3, 4.9, 0.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 717.35, 143.00003, 629.65)
 size = Vector3(2497.7, 349.6, 2649.1)
 data = SubResource("VoxelGIData_4ucfr")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_ukg08")]
+visible = false

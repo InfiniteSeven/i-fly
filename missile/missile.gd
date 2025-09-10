@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var old_z_position : Vector3
 @export var fut_z_position : Vector3
 @export var z_wing_node = z_wing
+@export var speed = 300
 
 func _ready():
 	pass
@@ -24,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 #movement
 	var motion = (head.global_basis * Vector3(0, 0, -1)).normalized()
-	motion *= 200 * delta
+	motion *= speed * delta
 
 	var new_transform = self.transform.looking_at(z_wing_position-(get_parent().global_position), Vector3.UP)
 	self.transform = self.transform.interpolate_with(new_transform, 0.1)
