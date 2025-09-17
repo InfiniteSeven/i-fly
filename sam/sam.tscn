@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg8n1riwughxg"]
+[gd_scene load_steps=4 format=3 uid="uid://cg8n1riwughxg"]
 
 [sub_resource type="GDScript" id="GDScript_y6rgn"]
 script/source = "extends Node3D
 
 @onready var radar_cone = $Turret/Gun/ShapeCast3D
 @onready var radar_beam = $RayCast3D
-@export var spin_speed = 4
+@export var spin_speed = 0
+@export var active_spin = 3
+
+
 @export var radar_counter = 0
 @export var missile_counter = 0
 @onready var missile_node = preload(\"res://missile/missile.tscn\")
@@ -28,11 +31,11 @@ func _physics_process(_delta) -> void:
 			radar_counter += 2
 			collider_z.radar_counter += 2
 			#print (radar_counter)
-			if radar_counter > 600:
+			if radar_counter > 300:
 				missile_launch()
 
 	if radar_beam.is_colliding() == false:
-		spin_speed = 4
+		spin_speed = active_spin
 		if radar_counter > 0:
 			radar_counter -= 1
 			collider_z.radar_counter -= 2
@@ -40,12 +43,12 @@ func _physics_process(_delta) -> void:
 
 	if radar_beam.is_colliding():
 		if radar_beam.get_collider() is z_wing == false:
-			spin_speed = 4
+			spin_speed = active_spin
 			if radar_counter > 0:
 				radar_counter -= 1
 
 func start_spin():
-	spin_speed = 4
+	spin_speed = active_spin
 
 func stop_spin():
 	spin_speed = 0
@@ -59,25 +62,30 @@ func missile_launch():
 	missile_counter += 1
 "
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y6rgn"]
-points = PackedVector3Array(0, 1, 0, 0, 200, 50, 0, 200, -50, 50, 200, 50, 50, 200, -50, 72, 200, 0, 25, 200, 60, 25, 200, -60, -25, 200, 0, -20, 200, 30, -20, 200, -30, 65, 200, 30, 65, 200, -30)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qjpvg"]
+points = PackedVector3Array(0, 0, 0, 0, 1500, -100, 0, 1500, 100, 200, 1500, -100, 200, 1500, 100, -50, 1500, 0, 250, 1500, 0, 100, 1500, -150, 100, 1500, 150)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_586ss"]
 
 [node name="SAM" type="Node3D"]
 script = SubResource("GDScript_y6rgn")
 
 [node name="Turret" type="CSGCylinder3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Gun" type="CSGCylinder3D" parent="Turret"]
 transform = Transform3D(-1.1313342e-08, 4.2221966e-08, -1, 0.965926, 0.2588191, 0, 0.2588191, -0.965926, -4.3711392e-08, 0, 1.4, -0.57000005)
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="Turret/Gun"]
-shape = SubResource("ConvexPolygonShape3D_y6rgn")
-target_position = Vector3(0, 1, 0)
-max_results = 2
+shape = SubResource("ConvexPolygonShape3D_qjpvg")
+collision_mask = 2
+
+[node name="ShapeCast3D2" type="ShapeCast3D" parent="Turret/Gun"]
+transform = Transform3D(200, 0, 0, 0, -200, 1.7484555e-05, 0, -1.7484555e-05, -200, 0, 0, 0)
+visible = false
+shape = SubResource("CylinderShape3D_586ss")
 collision_mask = 2
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
-target_position = Vector3(-150, 1160, -1820)
 hit_from_inside = true

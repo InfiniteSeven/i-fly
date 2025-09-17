@@ -21,6 +21,7 @@ script = ExtResource("1_yplei")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 0, 0)
+radius = 0.40527344
 height = 3.1
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D"]
@@ -28,7 +29,7 @@ transform = Transform3D(1, 0, 0, 0, 0.01, 1.0658141e-14, 0, 0, 1, 0, 1.5630002, 
 material = SubResource("StandardMaterial3D_yplei")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CSGCylinder3D/CSGCylinder3D"]
-transform = Transform3D(0.05, 0, 0, 0, -2.1855584e-09, -5.0000005, 0, 0.05, -2.1859625e-11, 0, 3.6666718, -7.4308844e-09)
+transform = Transform3D(0.5, 0, 0, 0, -2.1855612e-08, -50, 0, 0.5, -2.1855939e-10, 0, 33.985626, -2.0683714e-08)
 light_color = Color(1, 0, 0, 1)
 light_energy = 16.0
 spot_range = 35.043
@@ -36,6 +37,7 @@ spot_angle = 85.0
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCylinder3D"]
 transform = Transform3D(0.95, 0, 0, 0, 3, -4.500104e-15, 0, 1.4210855e-14, 0.95, 0, -0.83500004, 3.6499024e-08)
+radius = 0.4360652
 material = SubResource("StandardMaterial3D_nhnjh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -46,13 +48,12 @@ shape = SubResource("CylinderShape3D_nhnjh")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.125
-autostart = true
-
 [node name="MissileLife" type="Timer" parent="."]
 wait_time = 9.4
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="look_at2"]
+[node name="Box" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(10.993408, 1, 6.015564)
+
 [connection signal="timeout" from="MissileLife" to="." method="expire"]

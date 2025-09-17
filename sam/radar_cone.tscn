@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ujsxbi65u5ht"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7lgrv"]
+points = PackedVector3Array(0, 1, 0, 0, 200, 50, 0, 200, -50, 50, 200, 50, 50, 200, -50, 72, 200, 0, 25, 200, 60, 25, 200, -60, -25, 200, 0, -20, 200, 30, -20, 200, -30, 65, 200, 30, 65, 200, -30)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_7lgrv")
+target_position = Vector3(0, 1, 0)
+max_results = 2
+collision_mask = 2

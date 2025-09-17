@@ -35,7 +35,7 @@ emission = Color(0.98039216, 0, 0, 1)
 emission_energy_multiplier = 16.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_texo7"]
-radius = 10.5
+radius = 5.625277
 
 [node name="Z-Wing" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -43,19 +43,20 @@ collision_layer = 3
 script = ExtResource("1_u574x")
 
 [node name="WCollider" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1.3113416e-07, -5.0000005, -1.9411756e-23, 3, -2.1855695e-07, 1.7763568e-15, 0, -2.5410988e-21, 0.5, 9.177452e-16, -1.4, 7.1054274e-15)
+transform = Transform3D(-1.3113416e-07, -3, -1.5246594e-21, 3, -1.3113416e-07, -8.191824e-29, 1.5273258e-29, -1.5246594e-21, 3, 9.177452e-16, -1.4, 7.1054274e-15)
 shape = SubResource("CylinderShape3D_mw4ne")
 
 [node name="FCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4999999, 5.2453665e-08)
+visible = false
 shape = SubResource("CylinderShape3D_u574x")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, -3)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 24.099989, -2.0000005)
-fov = 90.0
+transform = Transform3D(1, 0, 0, 0, -0.07353415, 0.9972927, 0, -0.9972927, -0.07353415, 0, 10.275957, -1.9085126)
+fov = 100.0
 far = 8000.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -69,7 +70,12 @@ material_override = SubResource("StandardMaterial3D_wddh3")
 mesh = SubResource("CapsuleMesh_h6aty")
 
 [node name="Wing" type="MeshInstance3D" parent="MeshInstance3D/Fuselage"]
-transform = Transform3D(-4.371139e-08, -5, 0, 1, -2.1855695e-07, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(-0.42261833, -1.3594617, 0, 0.90630776, -0.63392746, 0, 0, 0, 0.5, 1.5, 0.44, 0)
+material_override = SubResource("StandardMaterial3D_umei7")
+mesh = SubResource("CylinderMesh_3glf7")
+
+[node name="Wing2" type="MeshInstance3D" parent="MeshInstance3D/Fuselage"]
+transform = Transform3D(0.42261824, -1.3594618, 0, 0.9063079, 0.63392735, 0, -7.1054274e-15, -2.842171e-14, 0.5, -1.5, 0.44, 0)
 material_override = SubResource("StandardMaterial3D_umei7")
 mesh = SubResource("CylinderMesh_3glf7")
 
@@ -104,10 +110,10 @@ offset_bottom = 40.0
 
 [node name="Speed" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 600.0
-offset_top = 500.0
-offset_right = 922.0
-offset_bottom = 639.0
+offset_left = 500.0
+offset_top = 400.0
+offset_right = 822.0
+offset_bottom = 539.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -115,10 +121,10 @@ theme_override_font_sizes/font_size = 64
 
 [node name="Altitude" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 1000.0
-offset_top = 500.0
-offset_right = 1322.0
-offset_bottom = 639.0
+offset_left = 1100.0
+offset_top = 400.0
+offset_right = 1422.0
+offset_bottom = 539.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10

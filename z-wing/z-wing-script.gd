@@ -5,7 +5,8 @@ class_name z_wing
 var mouse_captured : bool = false
 
 @onready var radar_counter = 0
-
+@export var warning_number = 50
+@export var export_position : Vector3
 
 @export_group("Speeds")
 const key_turn_speed = 0.05
@@ -14,7 +15,13 @@ const mouse_turn_speed = 0.002
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
-@export var combined_speed = 0.0
+@export var roll_rate = 2.0
+@export var pitch_up_rate = 1.5
+@export var pitch_down_rate = 2.0
+@export var yaw_rate = 8.0
+@export var combined_speed = 500.0
+@export var top_speed = 500.0
+@export var ideal_speed = 300.0
 @export var speed_r = 0.0
 @export var speed_p = 0.0
 @export var speed_y = 0.0
@@ -67,6 +74,8 @@ func _process(float):
 
 func _physics_process(delta: float) -> void:
 
+	export_position = $".".position
+
 #engine
 	$MeshInstance3D/Engine.material.emission_energy_multiplier = (forward_speed * 0.01)
 	$MeshInstance3D/Engine/Engine.light_energy = (forward_speed * 0.06)
@@ -75,10 +84,10 @@ func _physics_process(delta: float) -> void:
 	roll_left = Input.get_action_strength("roll left")
 	roll_right = Input.get_action_strength("roll right")
 
-	if forward_speed < 150:
-		max_roll_left = (forward_speed / 50)
+	if forward_speed < ideal_speed:
+		max_roll_left = (forward_speed / (ideal_speed / roll_rate))
 	else:
-		max_roll_left = ((forward_speed / 50) - ((forward_speed - 150) / 50) * 2)
+		max_roll_left = ((forward_speed / (ideal_speed / roll_rate)) - ((forward_speed - ideal_speed) / (ideal_speed / roll_rate)) * 2)
 	if Input.is_action_pressed("roll left"):
 		#print ("max roll left " + str(max_roll_left).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
@@ -90,15 +99,15 @@ func _physics_process(delta: float) -> void:
 		if roll_speed > 0:
 			roll_speed -= 0.02
 
-	if forward_speed < 150:
-		max_roll_right = forward_speed / -50
+	if forward_speed < ideal_speed:
+		max_roll_right = forward_speed / (ideal_speed / (roll_rate * -1))
 	else:
-		max_roll_right = ((forward_speed / -50) + ((forward_speed - 150) / 50) * 2)
+		max_roll_right = ((forward_speed / (ideal_speed / (roll_rate * -1))) + ((forward_speed - ideal_speed) / (ideal_speed / roll_rate)) * 2)
 	if Input.is_action_pressed("roll right"):
 		#print ("max roll right " + str(max_roll_right).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed > max_roll_right:
-			roll_speed -= 0.1 * roll_right
+			roll_speed -= 0.05 * roll_right
 		if roll_speed < max_roll_right:
 			roll_speed += 0.01
 	else:
@@ -111,30 +120,30 @@ func _physics_process(delta: float) -> void:
 	pitch_up = Input.get_action_strength("pitch up")
 	pitch_down = Input.get_action_strength("pitch down")
 
-	if forward_speed < 150:
-		max_pitch_up = forward_speed / 100
+	if forward_speed < ideal_speed:
+		max_pitch_up = forward_speed / (ideal_speed * pitch_up_rate)
 	else:
-		max_pitch_up = ((forward_speed / 100) - ((forward_speed - 150) / 150) * 2)
+		max_pitch_up = ((forward_speed / (ideal_speed * pitch_up_rate)) - ((forward_speed - ideal_speed) / (ideal_speed * pitch_down_rate)) * 2)
 	if Input.is_action_pressed("pitch up"):
 		#print ("max pitch up " + str(max_pitch_up).pad_decimals(2))
 		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed < max_pitch_up:
-			pitch_speed += 0.05 * pitch_up
+			pitch_speed += 0.025 * pitch_up
 		if pitch_speed > max_pitch_up:
 			pitch_speed -= 0.01
 	else:
 		if pitch_speed > 0:
 			pitch_speed -= 0.01
 
-	if forward_speed < 150:
-		max_pitch_down = forward_speed / -100
+	if forward_speed < ideal_speed:
+		max_pitch_down = forward_speed / (ideal_speed * (pitch_down_rate * -1))
 	else:
-		max_pitch_down = ((forward_speed / -100) + ((forward_speed - 150) / 150) * 2)
+		max_pitch_down = ((forward_speed / (ideal_speed * (pitch_down_rate * -1))) + ((forward_speed - ideal_speed) / (ideal_speed * pitch_down_rate)) * 2)
 	if Input.is_action_pressed("pitch down"):
 		#print ("max pitch down " + str(max_pitch_down).pad_decimals(2))
 		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed > max_pitch_down:
-			pitch_speed -= 0.05 * pitch_down
+			pitch_speed -= 0.02 * pitch_down
 		if pitch_speed < max_pitch_down:
 			pitch_speed += 0.01
 	else:
@@ -147,15 +156,15 @@ func _physics_process(delta: float) -> void:
 	yaw_left = Input.get_action_strength("yaw left")
 	yaw_right = Input.get_action_strength("yaw right")
 
-	if forward_speed < 150:
-		max_yaw_left = forward_speed / 300
+	if forward_speed < ideal_speed:
+		max_yaw_left = forward_speed / (ideal_speed * yaw_rate)
 	else:
-		max_yaw_left = ((forward_speed / 300) - ((forward_speed - 150) / 300) *2)
+		max_yaw_left = ((forward_speed / (ideal_speed * yaw_rate)) - ((forward_speed - ideal_speed) / (ideal_speed * yaw_rate)) *2)
 	if Input.is_action_pressed("yaw left"):
 		#print ("max yaw left " + str(max_yaw_left).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed < max_yaw_left:
-			yaw_speed += 0.02 * yaw_left
+			yaw_speed += 0.015 * yaw_left
 		if yaw_speed > max_yaw_right:
 			yaw_speed -= 0.01
 	else:
@@ -163,15 +172,15 @@ func _physics_process(delta: float) -> void:
 			yaw_speed -= 0.01
 
 
-	if forward_speed < 150:
-		max_yaw_right = forward_speed / -300
+	if forward_speed < ideal_speed:
+		max_yaw_right = forward_speed / (ideal_speed * (yaw_rate * -1))
 	else:
-		max_yaw_right = ((forward_speed / -300) + ((forward_speed - 150) / 300) * 2)
+		max_yaw_right = ((forward_speed / (ideal_speed * (yaw_rate * -1))) + ((forward_speed - ideal_speed) / (ideal_speed * yaw_rate)) * 2)
 	if Input.is_action_pressed("yaw right"):
 		#print ("max yaw right " + str(max_yaw_right).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed > max_yaw_right:
-			yaw_speed -= 0.02 * yaw_right
+			yaw_speed -= 0.015 * yaw_right
 		if yaw_speed < max_yaw_right:
 			yaw_speed += 0.01
 	else:
@@ -179,9 +188,9 @@ func _physics_process(delta: float) -> void:
 			yaw_speed += 0.01
 
 	if Input.is_action_pressed("speed 150"):
-		if forward_speed < 150:
+		if forward_speed < ideal_speed:
 			forward_speed += 0.5
-		if forward_speed > 150:
+		if forward_speed > ideal_speed:
 			forward_speed -= 0.5
 		
 
@@ -198,7 +207,7 @@ func _physics_process(delta: float) -> void:
 	if speed_y < 0:
 		speed_y *= -1
 
-	combined_speed = 250 - ((speed_p + speed_y)*10)
+	combined_speed = 500 - ((speed_p + speed_y)*10)
 
 
 #forward
@@ -253,11 +262,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	if radar_counter > 600:
+	if radar_counter > warning_number:
 		$HUD/Detected.show()
 		$HUD/WarningTimer.start()
 
-	if radar_counter < 600:
+	if radar_counter < warning_number:
 		warning_hide()
 
 	if forward_speed > 1:
@@ -265,7 +274,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		z_volume = 0
 	$AudioStreamPlayer.volume_linear = z_volume
-
 
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -90,6 +90,7 @@ _data = {
 }
 
 [node name="Main" type="Node3D"]
+process_mode = 1
 script = SubResource("GDScript_ig7tw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -105,7 +106,7 @@ directional_shadow_mode = 0
 directional_shadow_max_distance = 8192.0
 
 [node name="Z-Wing" parent="." instance=ExtResource("1_2g53n")]
-transform = Transform3D(-0.9848076, -0.17364833, 7.590417e-09, -1.4916068e-15, -4.3711395e-08, -1, 0.17364833, -0.9848076, 4.304731e-08, -103.2, 1061.3, -1513.2999)
+transform = Transform3D(-0.9848076, -0.17364833, 7.590417e-09, -1.4916068e-15, -4.3711395e-08, -1, 0.17364833, -0.9848076, 4.304731e-08, 141.34868, 683.1839, -1513.2999)
 
 [node name="SAM" parent="." instance=ExtResource("2_ukg08")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.099915, 0, 212.29999)
