@@ -11,7 +11,7 @@ var mouse_captured : bool = false
 @export_group("Speeds")
 const key_turn_speed = 0.05
 const mouse_turn_speed = 0.002
-@export var forward_speed = 0.0
+@export var forward_speed = 300.0
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
@@ -270,7 +270,7 @@ func _physics_process(delta: float) -> void:
 		warning_hide()
 
 	if forward_speed > 1:
-		z_volume = 0.001 * forward_speed
+		z_volume = 0.0005 * forward_speed
 	else:
 		z_volume = 0
 	$AudioStreamPlayer.volume_linear = z_volume
