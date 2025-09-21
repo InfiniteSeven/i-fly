@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://lxv8ab1m8n78"]
+[gd_scene load_steps=9 format=3 uid="uid://lxv8ab1m8n78"]
 
 [ext_resource type="Script" uid="uid://cvplkkpvu3o0x" path="res://missile/missile.gd" id="1_yplei"]
+[ext_resource type="Texture2D" uid="uid://cx1hvv5bd4vvj" path="res://PNG (Transparent)/smoke_01.png" id="2_nhnjh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yplei"]
 emission_enabled = true
@@ -13,6 +14,22 @@ albedo_color = Color(0.09411765, 1, 1, 1)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nhnjh"]
 height = 7.1883183
 radius = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_klu3d"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, -1, 10)
+turbulence_noise_strength = 0.19
+turbulence_noise_scale = 1.195
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amsgh"]
+transparency = 1
+albedo_texture = ExtResource("2_nhnjh")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_852mf"]
+material = SubResource("StandardMaterial3D_amsgh")
+size = Vector2(10, 10)
 
 [node name="Missile" type="CharacterBody3D"]
 collision_layer = 10
@@ -54,6 +71,14 @@ autostart = true
 
 [node name="Box" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+visible = false
 size = Vector3(10.993408, 1, 6.015564)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 5.2000003)
+amount = 256
+lifetime = 9.15
+process_material = SubResource("ParticleProcessMaterial_klu3d")
+draw_pass_1 = SubResource("QuadMesh_852mf")
 
 [connection signal="timeout" from="MissileLife" to="." method="expire"]

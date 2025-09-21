@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy4iucofoitl"]
+
+[ext_resource type="Texture2D" uid="uid://cx1hvv5bd4vvj" path="res://PNG (Transparent)/smoke_01.png" id="1_b8r36"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_85e62"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3tbds"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(10, -1, 0)
+turbulence_noise_strength = 0.19
+turbulence_noise_scale = 1.195
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xc82a"]
+transparency = 1
+albedo_texture = ExtResource("1_b8r36")
+
+[sub_resource type="QuadMesh" id="QuadMesh_nmup1"]
+material = SubResource("StandardMaterial3D_xc82a")
+size = Vector2(5, 5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_85e62")
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D"]
+transform = Transform3D(0.6427877, -0.26200268, 0.71984625, -7.9909475e-09, 0.9396927, 0.3420202, -0.76604444, -0.21984638, 0.6040228, 2.5, 0.8, 2.1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+amount = 24
+lifetime = 9.15
+process_material = SubResource("ParticleProcessMaterial_3tbds")
+draw_pass_1 = SubResource("QuadMesh_nmup1")

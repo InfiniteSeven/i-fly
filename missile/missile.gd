@@ -6,8 +6,8 @@ extends CharacterBody3D
 @export var old_z_pos : Vector3
 @export var fut_z_pos : Vector3
 @export var z_wing_node = z_wing
-@export var speed = 100
-@export var turn_speed = 0.01
+@export var speed = 200
+@export var turn_speed = 0.04
 @onready var box = $Box
 @onready var head = $Head
 
@@ -53,10 +53,13 @@ func _physics_process(delta: float) -> void:
 	#print ("missile " + str($".".position))
 	old_z_pos = new_z_pos
 	new_z_pos = z_wing_pos
-	fut_z_pos = new_z_pos + ((new_z_pos - old_z_pos) * (($MissileLife.time_left) * 20))
+	fut_z_pos = new_z_pos + ((new_z_pos - old_z_pos) * (($MissileLife.time_left) * 2))
 	print ($MissileLife.time_left)
 	#box.global_position = fut_z_pos
-	look_at(fut_z_pos)
+	#if $MissileLife.time_left > 6:
+	#	look_at(fut_z_pos)
+	#else:
+	#	look_at(z_wing_pos)
 
 	move_and_collide(motion)
 	#move_and_slide()

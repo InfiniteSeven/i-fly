@@ -32,7 +32,6 @@ albedo_color = Color(0.47843137, 0.5803922, 1, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ne"]
 emission_enabled = true
 emission = Color(0.98039216, 0, 0, 1)
-emission_energy_multiplier = 16.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_texo7"]
 radius = 5.625277
@@ -48,14 +47,13 @@ shape = SubResource("CylinderShape3D_mw4ne")
 
 [node name="FCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4999999, 5.2453665e-08)
-visible = false
 shape = SubResource("CylinderShape3D_u574x")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 7, -3)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.07353415, 0.9972927, 0, -0.9972927, -0.07353415, 0, 10.275957, -1.9085126)
+transform = Transform3D(1, 0, 0, 0, -0.07353415, 0.9972927, 0, -0.9972927, -0.07353415, 0, 4.9759574, -1.9085124)
 fov = 100.0
 far = 8000.0
 
@@ -91,8 +89,7 @@ material = SubResource("StandardMaterial3D_mw4ne")
 [node name="Engine" type="SpotLight3D" parent="MeshInstance3D/Engine"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 6.666664, -8.742234e-09)
 light_color = Color(1, 0, 0, 1)
-light_energy = 16.0
-spot_range = 35.043
+spot_range = 8.604
 spot_angle = 85.0
 
 [node name="SamHitbox" type="Area3D" parent="."]
@@ -120,6 +117,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 64
 
 [node name="Altitude" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.44313726)
 layout_mode = 0
 offset_left = 1100.0
 offset_top = 400.0
@@ -131,6 +129,7 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 64
 
 [node name="Pitch" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.44313726)
 layout_mode = 0
 offset_left = 100.0
 offset_top = 300.0

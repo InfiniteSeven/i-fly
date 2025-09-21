@@ -11,7 +11,7 @@ var mouse_captured : bool = false
 @export_group("Speeds")
 const key_turn_speed = 0.05
 const mouse_turn_speed = 0.002
-@export var forward_speed = 300.0
+@export var forward_speed = 100.0
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
@@ -21,7 +21,7 @@ const mouse_turn_speed = 0.002
 @export var yaw_rate = 8.0
 @export var combined_speed = 500.0
 @export var top_speed = 500.0
-@export var ideal_speed = 300.0
+@export var ideal_speed = 150.0
 @export var speed_r = 0.0
 @export var speed_p = 0.0
 @export var speed_y = 0.0
@@ -77,8 +77,8 @@ func _physics_process(delta: float) -> void:
 	export_position = $".".position
 
 #engine
-	$MeshInstance3D/Engine.material.emission_energy_multiplier = (forward_speed * 0.01)
-	$MeshInstance3D/Engine/Engine.light_energy = (forward_speed * 0.06)
+	$MeshInstance3D/Engine.material.emission_energy_multiplier = 1 + (throttle * 16)
+	#$MeshInstance3D/Engine/Engine.light_energy = (throttle * 16)
 
 #roll
 	roll_left = Input.get_action_strength("roll left")
@@ -171,7 +171,6 @@ func _physics_process(delta: float) -> void:
 		if yaw_speed > 0:
 			yaw_speed -= 0.01
 
-
 	if forward_speed < ideal_speed:
 		max_yaw_right = forward_speed / (ideal_speed * (yaw_rate * -1))
 	else:
@@ -211,7 +210,9 @@ func _physics_process(delta: float) -> void:
 
 
 #forward
-	throttle = Input.get_action_strength("throttle")
+	throttle = Input.get_action_raw_strength("throttle")
+
+	print (throttle)
 
 	if Input.is_action_pressed("throttle"):
 		if forward_speed < combined_speed :
@@ -221,6 +222,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		if forward_speed > 0:
 			forward_speed -= 0.1
+
+
 
 #brakes
 	brakes = Input.get_action_strength("brakes")
@@ -235,18 +238,9 @@ func _physics_process(delta: float) -> void:
 #			velocity.y -= gravity * delta
 
 #lift
-	if forward_speed > 0 and forward_speed < 5:
-		velocity.y = -10
-	if forward_speed > 5 and forward_speed < 10:
-		velocity.y = -8
-	if forward_speed > 10 and forward_speed < 15:
-		velocity.y = -6
-	if forward_speed > 15 and forward_speed < 20:
-		velocity.y = -4
-	if forward_speed > 20 and forward_speed < 25:
-		velocity.y = -2
-	if forward_speed > 25:
-		velocity.y = 0
+	if forward_speed < 70:
+		velocity.y = (-70 + forward_speed)
+
 
 	if Input.is_action_pressed("throttle"):
 		if forward_speed < 15:
@@ -270,7 +264,7 @@ func _physics_process(delta: float) -> void:
 		warning_hide()
 
 	if forward_speed > 1:
-		z_volume = 0.0005 * forward_speed
+		z_volume = 0.01 + (0.1 * throttle)
 	else:
 		z_volume = 0
 	$AudioStreamPlayer.volume_linear = z_volume

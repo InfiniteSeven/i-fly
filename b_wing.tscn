@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://colw5yuehif4w"]
+
+[ext_resource type="PackedScene" uid="uid://dmrimqbsnvmol" path="res://Blender models/B-wing.blend" id="1_lnpc3"]
+
+[node name="B-wing" instance=ExtResource("1_lnpc3")]

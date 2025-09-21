@@ -6,7 +6,7 @@ script/source = "extends Node3D
 @onready var radar_cone = $Turret/Gun/ShapeCast3D
 @onready var radar_beam = $RayCast3D
 @export var spin_speed = 0
-@export var active_spin = 3
+@export var active_spin = 1
 
 
 @export var radar_counter = 0
