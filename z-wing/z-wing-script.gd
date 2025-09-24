@@ -15,13 +15,13 @@ const mouse_turn_speed = 0.002
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
-@export var roll_rate = 2.0
-@export var pitch_up_rate = 1.5
-@export var pitch_down_rate = 2.0
-@export var yaw_rate = 8.0
+@export var roll_rate = 1.6
+@export var pitch_up_rate = 1.6
+@export var pitch_down_rate = 1.9
+@export var yaw_rate = 7.0
 @export var combined_speed = 500.0
 @export var top_speed = 500.0
-@export var ideal_speed = 150.0
+@export var ideal_speed = 250.0
 @export var speed_r = 0.0
 @export var speed_p = 0.0
 @export var speed_y = 0.0
@@ -92,12 +92,14 @@ func _physics_process(delta: float) -> void:
 		#print ("max roll left " + str(max_roll_left).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed < max_roll_left:
-			roll_speed += 0.1 * roll_left
+			roll_speed += 0.02 * roll_left
 		if roll_speed > max_roll_left:
 			roll_speed -= 0.01
 	else:
 		if roll_speed > 0:
 			roll_speed -= 0.02
+
+	#print (roll_speed)
 
 	if forward_speed < ideal_speed:
 		max_roll_right = forward_speed / (ideal_speed / (roll_rate * -1))
@@ -107,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		#print ("max roll right " + str(max_roll_right).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed > max_roll_right:
-			roll_speed -= 0.05 * roll_right
+			roll_speed -= 0.02 * roll_right
 		if roll_speed < max_roll_right:
 			roll_speed += 0.01
 	else:
@@ -128,7 +130,7 @@ func _physics_process(delta: float) -> void:
 		#print ("max pitch up " + str(max_pitch_up).pad_decimals(2))
 		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed < max_pitch_up:
-			pitch_speed += 0.025 * pitch_up
+			pitch_speed += 0.01 * pitch_up
 		if pitch_speed > max_pitch_up:
 			pitch_speed -= 0.01
 	else:
@@ -143,12 +145,14 @@ func _physics_process(delta: float) -> void:
 		#print ("max pitch down " + str(max_pitch_down).pad_decimals(2))
 		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed > max_pitch_down:
-			pitch_speed -= 0.02 * pitch_down
+			pitch_speed -= 0.0075 * pitch_down
 		if pitch_speed < max_pitch_down:
 			pitch_speed += 0.01
 	else:
 		if pitch_speed < 0:
 			pitch_speed += 0.01
+
+	print (pitch_speed)
 
 	global_rotate(transform.basis.x, 1 * pitch_speed * delta)
 
@@ -164,12 +168,14 @@ func _physics_process(delta: float) -> void:
 		#print ("max yaw left " + str(max_yaw_left).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed < max_yaw_left:
-			yaw_speed += 0.015 * yaw_left
+			yaw_speed += 0.01 * yaw_left
 		if yaw_speed > max_yaw_right:
-			yaw_speed -= 0.01
+			yaw_speed -= 0.005
 	else:
 		if yaw_speed > 0:
 			yaw_speed -= 0.01
+
+#yaw gets to max yaw right faster than it gets to max yaw left, must fix
 
 	if forward_speed < ideal_speed:
 		max_yaw_right = forward_speed / (ideal_speed * (yaw_rate * -1))
@@ -179,9 +185,9 @@ func _physics_process(delta: float) -> void:
 		#print ("max yaw right " + str(max_yaw_right).pad_decimals(2))
 		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed > max_yaw_right:
-			yaw_speed -= 0.015 * yaw_right
+			yaw_speed -= 0.01 * yaw_right
 		if yaw_speed < max_yaw_right:
-			yaw_speed += 0.01
+			yaw_speed += 0.005
 	else:
 		if yaw_speed < 0:
 			yaw_speed += 0.01
@@ -211,8 +217,6 @@ func _physics_process(delta: float) -> void:
 
 #forward
 	throttle = Input.get_action_raw_strength("throttle")
-
-	print (throttle)
 
 	if Input.is_action_pressed("throttle"):
 		if forward_speed < combined_speed :

@@ -24,6 +24,7 @@ turbulence_noise_scale = 1.195
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amsgh"]
 transparency = 1
+shading_mode = 0
 albedo_texture = ExtResource("2_nhnjh")
 billboard_mode = 1
 
