@@ -15,13 +15,13 @@ const mouse_turn_speed = 0.002
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
-@export var roll_rate = 1.6
-@export var pitch_up_rate = 1.6
-@export var pitch_down_rate = 1.9
-@export var yaw_rate = 7.0
-@export var combined_speed = 500.0
-@export var top_speed = 500.0
-@export var ideal_speed = 250.0
+@export var roll_rate = 2.5
+@export var pitch_up_rate = 1.0
+@export var pitch_down_rate = 1.2
+@export var yaw_rate = 6.0
+@export var combined_speed = 900.0 #real top speed
+@export var top_speed = 1400.0 #must fix!
+@export var ideal_speed = 1000.0
 @export var speed_r = 0.0
 @export var speed_p = 0.0
 @export var speed_y = 0.0
@@ -58,6 +58,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		capture_mouse()
 	if Input.is_key_pressed(KEY_ESCAPE):
 		release_mouse()
+	if Input.is_action_just_pressed("change camera"):
+		if $Camera3D.current == true:
+			$Camera3D2.make_current()
+		else:
+			$Camera3D.make_current()
 
 #pitch yaw
 	if mouse_captured == true:
@@ -77,7 +82,7 @@ func _physics_process(delta: float) -> void:
 	export_position = $".".position
 
 #engine
-	$MeshInstance3D/Engine.material.emission_energy_multiplier = 1 + (throttle * 16)
+	$MeshInstance3D/Engine.material.emission_energy_multiplier = 2 + (throttle * 15)
 	#$MeshInstance3D/Engine/Engine.light_energy = (throttle * 16)
 
 #roll
@@ -212,7 +217,7 @@ func _physics_process(delta: float) -> void:
 	if speed_y < 0:
 		speed_y *= -1
 
-	combined_speed = 500 - ((speed_p + speed_y)*10)
+	combined_speed = 1400 - ((speed_p + speed_y)*10)
 
 
 #forward
@@ -268,10 +273,12 @@ func _physics_process(delta: float) -> void:
 		warning_hide()
 
 	if forward_speed > 1:
-		z_volume = 0.01 + (0.1 * throttle)
+		z_volume = 0.02 + (0.1 * throttle)
 	else:
 		z_volume = 0
 	$AudioStreamPlayer.volume_linear = z_volume
+
+	$Camera3D/ShakerComponent3D.intensity = 0.001 * (forward_speed / 100)
 
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
