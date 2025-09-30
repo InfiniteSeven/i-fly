@@ -1,19 +1,19 @@
-[gd_scene load_steps=59 format=4 uid="uid://cpcmpd75skbkr"]
+[gd_scene load_steps=59 format=4 uid="uid://3ow342twl8n1"]
 
-[ext_resource type="Texture2D" uid="uid://6u37fl711gui" path="res://Blender models/Donut_donut base 2.png" id="1_7l02o"]
-[ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_kg278"]
-[ext_resource type="AudioStream" uid="uid://bihke02v1j0jo" path="res://z-wing/RWR Radar Track Sound Effect.mp3" id="2_7l02o"]
-[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://z-wing/jet.wav" id="3_kg278"]
-[ext_resource type="Script" uid="uid://byg1yu7xs83wv" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="3_rjrpj"]
-[ext_resource type="Script" uid="uid://bicmsopixvexd" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="4_2c1kx"]
-[ext_resource type="Texture2D" uid="uid://cp7wiq0bg5i8d" path="res://PNG (Transparent)/smoke_09.png" id="5_ly1ur"]
-[ext_resource type="Script" uid="uid://8lal27j6wa87" path="res://addons/shaker/data/Vector3/ShakerTypeSineWave3D.gd" id="5_pp0m2"]
-[ext_resource type="Script" uid="uid://dwyyb5x6028rf" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="5_wjmo3"]
+[ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_shm6l"]
+[ext_resource type="Texture2D" uid="uid://6u37fl711gui" path="res://Blender models/Donut_donut base 2.png" id="2_gjpms"]
+[ext_resource type="Script" uid="uid://byg1yu7xs83wv" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="3_v7qc4"]
+[ext_resource type="Script" uid="uid://bicmsopixvexd" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="4_mbm1g"]
+[ext_resource type="Script" uid="uid://8lal27j6wa87" path="res://addons/shaker/data/Vector3/ShakerTypeSineWave3D.gd" id="5_foo4i"]
+[ext_resource type="Script" uid="uid://dwyyb5x6028rf" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="6_poqhl"]
+[ext_resource type="AudioStream" uid="uid://bihke02v1j0jo" path="res://z-wing/RWR Radar Track Sound Effect.mp3" id="7_3vl3r"]
+[ext_resource type="AudioStream" uid="uid://l5btrhw51yiq" path="res://z-wing/jet.wav" id="8_pt1xf"]
+[ext_resource type="Texture2D" uid="uid://cp7wiq0bg5i8d" path="res://PNG (Transparent)/smoke_09.png" id="9_c7r4p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1l227"]
 resource_name = "Material.003"
 cull_mode = 2
-albedo_texture = ExtResource("1_7l02o")
+albedo_texture = ExtResource("2_gjpms")
 metadata/extras = {
 "poliigon_props": {}
 }
@@ -96,15 +96,15 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gqls6")
 
 [sub_resource type="Resource" id="Resource_wjmo3"]
-script = ExtResource("5_pp0m2")
+script = ExtResource("5_foo4i")
 frequency = Vector3(2, 0, 1)
 phase = Vector3(2, 0, 2)
 amplitude = Vector3(1, 0, 1)
 metadata/_custom_type_script = "uid://8lal27j6wa87"
 
 [sub_resource type="Resource" id="Resource_67ryy"]
-script = ExtResource("5_wjmo3")
-PositionShake = Array[ExtResource("4_2c1kx")]([SubResource("Resource_wjmo3")])
+script = ExtResource("6_poqhl")
+PositionShake = Array[ExtResource("4_mbm1g")]([SubResource("Resource_wjmo3")])
 metadata/_custom_type_script = "uid://dwyyb5x6028rf"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg278"]
@@ -502,7 +502,7 @@ scale_max = 1.1
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi0os"]
 transparency = 1
 shading_mode = 0
-albedo_texture = ExtResource("5_ly1ur")
+albedo_texture = ExtResource("9_c7r4p")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_2c1kx"]
@@ -512,7 +512,7 @@ size = Vector2(10, 10)
 [node name="Donut2" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 collision_layer = 11
-script = ExtResource("1_kg278")
+script = ExtResource("1_shm6l")
 
 [node name="MovementNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -545,7 +545,7 @@ far = 8000.0
 
 [node name="ShakerComponent3D" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(-0.099999875, -2.2967582e-07, -9.947891e-14, -2.2967602e-07, 0.099999785, 4.7683805e-08, -1.0039458e-14, 4.7683614e-08, -0.10000019, 4.246831e-07, -0.70851165, -3.6759567)
-script = ExtResource("3_rjrpj")
+script = ExtResource("3_v7qc4")
 AutoPlay = true
 intensity = 0.01
 shakerPreset = SubResource("Resource_67ryy")
@@ -558,7 +558,7 @@ far = 8000.0
 
 [node name="ShakerComponent3D" type="Node3D" parent="Camera3D2"]
 transform = Transform3D(-0.099999875, -2.2967582e-07, -9.947891e-14, -2.2967602e-07, 0.099999785, 4.7683805e-08, -1.0039458e-14, 4.7683614e-08, -0.10000019, 4.246831e-07, -0.70851165, -3.6759567)
-script = ExtResource("3_rjrpj")
+script = ExtResource("3_v7qc4")
 AutoPlay = true
 intensity = 0.01
 shakerPreset = SubResource("Resource_67ryy")
@@ -657,11 +657,11 @@ wait_time = 0.25
 autostart = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_7l02o")
+stream = ExtResource("7_3vl3r")
 volume_db = -10.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_kg278")
+stream = ExtResource("8_pt1xf")
 volume_db = -80.0
 pitch_scale = 0.75
 autoplay = true

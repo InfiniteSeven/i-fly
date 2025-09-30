@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://iabmhq6cfeyp"]
+
+[ext_resource type="PackedScene" uid="uid://calws5j8bfr27" path="res://Blender models/cockpit1.blend" id="1_j2s57"]
+
+[node name="cockpit1" instance=ExtResource("1_j2s57")]
