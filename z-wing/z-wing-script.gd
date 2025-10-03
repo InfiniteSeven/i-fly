@@ -46,6 +46,8 @@ var max_yaw_left
 var yaw_right
 var max_yaw_right
 @export var throttle : float
+@export var throttle_add : float
+@export var throttle_sub : float
 var brakes
 
 
@@ -91,7 +93,7 @@ func _physics_process(delta: float) -> void:
 	export_position = $".".position
 
 #engine
-	$MeshInstance3D/Engine.material.emission_energy_multiplier = 2 + (throttle * 15)
+	$MeshInstance3D/Engine.material.emission_energy_multiplier = 2.5 + (throttle * 0.1)
 	#$MeshInstance3D/Engine/Engine.light_energy = (throttle * 16)
 
 #roll
@@ -226,27 +228,46 @@ func _physics_process(delta: float) -> void:
 
 	combined_speed = top_speed - ((speed_p + speed_y)*10)
 
+#new throttle code
+	throttle_add = Input.get_action_raw_strength("throttle") * 0.35
+	throttle_sub = Input.get_action_raw_strength("brakes") * 0.35
+
+	if throttle < 100:
+		throttle += throttle_add
+	if throttle > 100:
+		throttle = 100
+	if throttle > 0:
+		throttle -= throttle_sub
+	if throttle < 0:
+		throttle = 0
+
+	f_speed += ((throttle/100) - 0.05)
+	f_speed -= (f_speed / 1100)
+
+	print (throttle)
 
 #forward
-	throttle = Input.get_action_raw_strength("throttle")
+#old code start
+#	throttle = Input.get_action_raw_strength("throttle")
 
-	if Input.is_action_pressed("throttle"):
-		if f_speed < combined_speed :
-			f_speed += 0.5 * throttle
-		elif f_speed > combined_speed:
-			f_speed -= 0.2
-	else:
-		if f_speed > 0:
-			f_speed -= 0.1
-
+#	if Input.is_action_pressed("throttle"):
+#		if f_speed < combined_speed :
+#			f_speed += 0.5 * throttle
+#		elif f_speed > combined_speed:
+#			f_speed -= 0.2
+#	else:
+#		if f_speed > 0:
+#			f_speed -= 0.1
 
 
 #brakes
-	brakes = Input.get_action_strength("brakes")
+#	brakes = Input.get_action_strength("brakes")
 
-	if Input.is_action_pressed("brakes"):
-		if f_speed > 0 :
-			f_speed -= 1 * brakes
+#	if Input.is_action_pressed("brakes"):
+#		if f_speed > 0 :
+#			f_speed -= 1 * brakes
+#old code end
+
 
 	# Add the gravity.
 #	if not is_on_floor():
@@ -292,7 +313,7 @@ func _physics_process(delta: float) -> void:
 		warning_hide()
 
 	if f_speed > 1:
-		z_volume = 0.02 + (0.1 * throttle)
+		z_volume = 0.02 + (0.001 * throttle)
 	else:
 		z_volume = 0
 	$AudioStreamPlayer.volume_linear = z_volume
@@ -308,9 +329,9 @@ func release_mouse():
 	mouse_captured = false
 
 func update_speed():
-	$HUD/Speed.text = ("Speed ") + str(f_speed).pad_decimals(0)
-	$"B-wing/Node3D/Sprite3D/SubViewport/Speed".text = ("Speed ") + str(f_speed).pad_decimals(0)
-	$HUD/Altitude.text = ("Altitude ") + str(position.y).pad_decimals(0)
+	$"B-wing/Cockpit/HUD/Label3D".text = str(f_speed).pad_decimals(0)
+	$"B-wing/Cockpit/HUD/Label3D2".text = str(position.y).pad_decimals(0)
+	$"B-wing/Cockpit/HUD/Label3D3".text = str(throttle).pad_decimals(0) + ("%")
 #	$HUD/Pitch.text = ("Pitch ") + str(($"Z-Wing2".rotation_degrees.x - 90) * -1).pad_decimals(0)
 #	$HUD/Roll.text = ("Roll ") + str($"Z-Wing2".rotation_degrees.z).pad_decimals(0)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cpcmpd75skbkr"]
+[gd_scene load_steps=57 format=4 uid="uid://cpcmpd75skbkr"]
 
 [ext_resource type="Texture2D" uid="uid://6u37fl711gui" path="res://Blender models/Donut_donut base 2.png" id="1_7l02o"]
 [ext_resource type="Script" uid="uid://bbwagaprq3ye" path="res://z-wing/z-wing-script.gd" id="1_kg278"]
@@ -482,12 +482,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jt3iu")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wjmo3"]
-viewport_path = NodePath("B-wing/Node3D/Sprite3D/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_pp0m2"]
-viewport_path = NodePath("B-wing/Node3D/Sprite3D2/SubViewport")
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kg278"]
 height = 1.5250001
 radius = 0.1
@@ -591,30 +585,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Speed" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 800.0
-offset_right = 522.0
-offset_bottom = 939.0
-theme_override_colors/font_color = Color(0, 1, 0, 0.3529412)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 48
-
-[node name="Altitude" type="Label" parent="HUD"]
-layout_mode = 0
-offset_left = 1400.0
-offset_top = 800.0
-offset_right = 1722.0
-offset_bottom = 939.0
-theme_override_colors/font_color = Color(0, 1, 0, 0.3529412)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 48
 
 [node name="Pitch" type="Label" parent="HUD"]
 layout_mode = 0
@@ -732,62 +702,69 @@ metadata/extras = {
 "poliigon_props": {}
 }
 
-[node name="Node3D" type="Node3D" parent="B-wing"]
+[node name="Cockpit" type="Node3D" parent="B-wing"]
 transform = Transform3D(0.5, -2.393597e-20, 0, -2.3935938e-20, 0.5, 0, -6.7762636e-20, 0, 0.5, -1.4908303e-06, 0.6490982, 5.8605704)
 
-[node name="Cube" type="MeshInstance3D" parent="B-wing/Node3D"]
+[node name="Cube" type="MeshInstance3D" parent="B-wing/Cockpit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1466882, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_67ryy")
 skeleton = NodePath("")
 
-[node name="Cube2" type="MeshInstance3D" parent="B-wing/Node3D"]
+[node name="Cube2" type="MeshInstance3D" parent="B-wing/Cockpit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1466882, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_iufmx")
 skeleton = NodePath("")
 
-[node name="Cube3" type="MeshInstance3D" parent="B-wing/Node3D"]
+[node name="Cube3" type="MeshInstance3D" parent="B-wing/Cockpit"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1466882, 0, 0, 0)
 mesh = SubResource("ArrayMesh_kgatc")
 skeleton = NodePath("")
 
-[node name="Sprite3D" type="Sprite3D" parent="B-wing/Node3D"]
-transform = Transform3D(-0.125, 2.3681485e-08, -1.32848e-07, -3.46245e-08, 0.113311514, 0.052777845, 1.3042447e-07, 0.052777845, -0.113311514, 0.48800004, 0.8720001, 0.79713154)
-centered = false
-texture = SubResource("ViewportTexture_wjmo3")
+[node name="HUD" type="Node3D" parent="B-wing/Cockpit"]
 
-[node name="SubViewport" type="SubViewport" parent="B-wing/Node3D/Sprite3D"]
-transparent_bg = true
-size = Vector2i(360, 90)
+[node name="Label3D" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47555342, 1.6450354, 0.93990993)
+modulate = Color(0, 1, 0, 1)
+text = "1000"
+font_size = 64
+horizontal_alignment = 0
 
-[node name="Speed" type="Label" parent="B-wing/Node3D/Sprite3D/SubViewport"]
-offset_right = 382.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(2.6471912e-06, 0.73389286, 1.92523e-07, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 64
-text = "SPEED 1000"
+[node name="Label3D2" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47554204, 1.5449997, 0.9399977)
+modulate = Color(0, 1, 0, 1)
+text = "1000"
+font_size = 64
+horizontal_alignment = 0
 
-[node name="Sprite3D2" type="Sprite3D" parent="B-wing/Node3D"]
-transform = Transform3D(-0.15, -1.0800055e-14, -2.2649372e-08, -1.0800055e-14, 0.15, -1.0905213e-27, 2.2649372e-08, 1.6307618e-21, -0.15, 0.26089892, 1.5855027, 0.9710922)
-texture = SubResource("ViewportTexture_pp0m2")
+[node name="Label3D3" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47554204, 1.4449998, 0.9399977)
+modulate = Color(0, 1, 0, 1)
+text = "100%"
+font_size = 64
+horizontal_alignment = 0
 
-[node name="SubViewport" type="SubViewport" parent="B-wing/Node3D/Sprite3D2"]
-transparent_bg = true
-size = Vector2i(315, 80)
+[node name="Label3D4" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.6600115, 1.6450356, 0.93991184)
+modulate = Color(0, 1, 0, 1)
+text = "SPD"
+font_size = 64
+horizontal_alignment = 0
 
-[node name="Speed" type="Label" parent="B-wing/Node3D/Sprite3D2/SubViewport"]
-offset_right = 382.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0.73333335, 0, 0.78431374)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.78431374)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 64
-text = "HUD 1000"
+[node name="Label3D5" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.66, 1.545, 0.9399996)
+modulate = Color(0, 1, 0, 1)
+text = "ALT"
+font_size = 64
+horizontal_alignment = 0
+
+[node name="Label3D6" type="Label3D" parent="B-wing/Cockpit/HUD"]
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.66, 1.445, 0.9399996)
+modulate = Color(0, 1, 0, 1)
+text = "THR"
+font_size = 64
+horizontal_alignment = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0625, 0)
