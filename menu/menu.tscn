@@ -10,9 +10,9 @@ script = ExtResource("1_j0t7f")
 
 [node name="MainMenu" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 296.0
-offset_right = 1920.0
-offset_bottom = 778.0
+offset_top = 4.0
+offset_right = 1917.0
+offset_bottom = 1079.0
 
 [node name="PLAY" type="Button" parent="MainMenu"]
 layout_mode = 2

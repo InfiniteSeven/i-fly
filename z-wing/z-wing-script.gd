@@ -2,8 +2,6 @@ extends CharacterBody3D
 
 class_name z_wing
 
-var mouse_captured : bool = false
-
 @onready var radar_counter = 0
 @export var warning_number = 50
 @export var export_position : Vector3
@@ -56,10 +54,7 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		capture_mouse()
-	if Input.is_key_pressed(KEY_ESCAPE):
-		release_mouse()
+
 	if Input.is_action_just_pressed("change camera"):
 		if $Head/Camera3D.current == true:
 			$Camera3D2.make_current()
@@ -67,11 +62,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			$Head/Camera3D.make_current()
 
 #pitch yaw
-	if mouse_captured == true:
-		if event is InputEventMouseMotion:
+	#1if mouse_captured == true:
+		#2if event is InputEventMouseMotion:
 			#global_rotate(-event.relative.x, 0.02 * rotation_speed)
-			$Head.rotate_z(-event.relative.x * mouse_turn_speed * -1)
-			$Head/Camera3D.rotate_x(-event.relative.y * mouse_turn_speed)
+			#3$Head.rotate_z(-event.relative.x * mouse_turn_speed * -1)
+			#4$Head/Camera3D.rotate_x(-event.relative.y * mouse_turn_speed)
 			#camera.rotate_z(-event.relative.y * mouse_turn_speed * -1)
 
 #			movementnode.rotation.y = clamp(movementnode.rotation.y, deg_to_rad(-85), (deg_to_rad(85)))
@@ -244,7 +239,6 @@ func _physics_process(delta: float) -> void:
 	f_speed += ((throttle/100) - 0.05)
 	f_speed -= (f_speed / 1100)
 
-	print (throttle)
 
 #forward
 #old code start
@@ -320,17 +314,12 @@ func _physics_process(delta: float) -> void:
 
 	$Head/Camera3D/ShakerComponent3D.intensity = 0.001 * (f_speed / 100)
 
-func capture_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	mouse_captured = true
+#capture mouse etc
 
-func release_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	mouse_captured = false
 
 func update_speed():
-	$"B-wing/Cockpit/HUD/Label3D".text = str(f_speed).pad_decimals(0)
-	$"B-wing/Cockpit/HUD/Label3D2".text = str(position.y).pad_decimals(0)
+	$"B-wing/Cockpit/HUD/Label3D".text = str(f_speed * 2.236).pad_decimals(0)
+	$"B-wing/Cockpit/HUD/Label3D2".text = str(position.y * 3.281).pad_decimals(0)
 	$"B-wing/Cockpit/HUD/Label3D3".text = str(throttle).pad_decimals(0) + ("%")
 #	$HUD/Pitch.text = ("Pitch ") + str(($"Z-Wing2".rotation_degrees.x - 90) * -1).pad_decimals(0)
 #	$HUD/Roll.text = ("Roll ") + str($"Z-Wing2".rotation_degrees.z).pad_decimals(0)
