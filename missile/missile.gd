@@ -70,9 +70,6 @@ func _physics_process(delta: float) -> void:
 
 
 
-func _process(float):
-	pass
-
 #combined speed
 	speed_p = pitch_speed
 	speed_r = roll_speed

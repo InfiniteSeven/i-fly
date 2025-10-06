@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ttv84abtbtsn"]
+[gd_scene load_steps=3 format=3 uid="uid://ttv84abtbtsn"]
 
 [ext_resource type="Script" uid="uid://dix40en0m0gg7" path="res://menu/menu.gd" id="1_j0t7f"]
+[ext_resource type="Script" uid="uid://df8k1wgd4frq7" path="res://menu/canvas_layer.gd" id="2_g18jx"]
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -8,46 +9,161 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_j0t7f")
 
-[node name="MainMenu" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 1917.0
-offset_bottom = 1079.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_g18jx")
 
-[node name="PLAY" type="Button" parent="MainMenu"]
+[node name="MainMenu" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -958.5
+offset_right = 958.5
+offset_bottom = 1075.0
+grow_horizontal = 2
+
+[node name="PLAY" type="Button" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
 text = "PLAY"
 
-[node name="EXIT" type="Button" parent="MainMenu"]
+[node name="SETTINGS" type="Button" parent="CanvasLayer/MainMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 96
+text = "SETTINGS"
+
+[node name="EXIT" type="Button" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
 text = "EXIT"
 
-[node name="DeathScreen" type="VBoxContainer" parent="."]
+[node name="DeathScreen" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
-layout_mode = 0
-offset_right = 1920.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -960.0
+offset_right = 960.0
 offset_bottom = 625.0
+grow_horizontal = 2
 
-[node name="Label" type="Label" parent="DeathScreen"]
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 64
 text = "You died."
 
-[node name="Button" type="Button" parent="DeathScreen"]
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 64
 text = "MAIN MENU"
 
-[connection signal="button_up" from="MainMenu/PLAY" to="." method="play"]
-[connection signal="button_up" from="MainMenu/EXIT" to="." method="quit"]
-[connection signal="button_up" from="DeathScreen/Button" to="." method="death_to_main"]
+[node name="Settings" type="HBoxContainer" parent="CanvasLayer"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+alignment = 1
+
+[node name="Resolutions" type="VBoxContainer" parent="CanvasLayer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Resolutions"
+
+[node name="3840x2160" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "3840x2160"
+
+[node name="1920x1200" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "1920x1200"
+
+[node name="1920x1080" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "1920x1080"
+
+[node name="1800x1000" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "1800x1000"
+
+[node name="1600x900" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "1600x900"
+
+[node name="Back" type="VBoxContainer" parent="CanvasLayer/Settings"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="CanvasLayer/Settings/Back"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "BACK TO MAIN"
+
+[node name="Modes" type="VBoxContainer" parent="CanvasLayer/Settings"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Settings/Modes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Window mode"
+
+[node name="Fullscreen" type="Button" parent="CanvasLayer/Settings/Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Fullscreen"
+
+[node name="Borderless" type="Button" parent="CanvasLayer/Settings/Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Borderless"
+
+[node name="Windowed" type="Button" parent="CanvasLayer/Settings/Modes"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Windowed"
+
+[connection signal="button_up" from="CanvasLayer/MainMenu/PLAY" to="." method="play"]
+[connection signal="button_up" from="CanvasLayer/MainMenu/SETTINGS" to="." method="resolutions"]
+[connection signal="button_up" from="CanvasLayer/MainMenu/EXIT" to="." method="quit"]
+[connection signal="button_up" from="CanvasLayer/DeathScreen/Button" to="." method="death_to_main"]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/3840x2160" to="." method="change_resolution" binds= [Vector2i(3840, 2160)]]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1920x1200" to="." method="change_resolution" binds= [Vector2i(1920, 1200)]]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1920x1080" to="." method="change_resolution" binds= [Vector2i(1920, 1080)]]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1800x1000" to="." method="change_resolution" binds= [Vector2i(1800, 1000)]]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1600x900" to="." method="change_resolution" binds= [Vector2i(1600, 900)]]
+[connection signal="button_up" from="CanvasLayer/Settings/Back/Back" to="." method="back_to_main"]
+[connection signal="button_up" from="CanvasLayer/Settings/Modes/Fullscreen" to="." method="change_window_mode" binds= [0]]
+[connection signal="button_up" from="CanvasLayer/Settings/Modes/Borderless" to="." method="change_window_mode" binds= [1]]
+[connection signal="button_up" from="CanvasLayer/Settings/Modes/Windowed" to="." method="change_window_mode" binds= [2]]

@@ -52,7 +52,7 @@ var brakes
 func _ready():
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	# Mouse capturing
 
 	if Input.is_action_just_pressed("change camera"):
@@ -73,7 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 #			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-15), (deg_to_rad(60)))
 
 
-func _process(float):
+func _process(_delta) -> void:
 	if Input.is_action_pressed("camera up"):
 		$Head/Camera3D.rotation_degrees.x += 1
 	if Input.is_action_pressed("camera down"):
@@ -327,7 +327,7 @@ func update_speed():
 func warning_hide():
 	$HUD/Detected.hide()
 
-func sam_hit_z(body_entered):
+func sam_hit_z(_body_entered):
 	get_parent().sam_hit()
 	print ("sam hit z")
 

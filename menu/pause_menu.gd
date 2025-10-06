@@ -7,11 +7,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
-	pass
-
 func resume():
 	print ("test post")
 	$".".hide()
@@ -25,9 +20,9 @@ func main_menu():
 	get_parent().get_parent().main_menu.show()
 	get_parent().queue_free()
 
-func _input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		capture_mouse()
+func _input(_event: InputEvent) -> void:
+	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	#	capture_mouse()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		release_mouse()
 
