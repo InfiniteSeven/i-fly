@@ -26,6 +26,12 @@ const mouse_turn_speed = 0.002
 @export var elevator_l = 0.0
 var gravity = 1
 
+@export var true_speed : float
+@export var g_speed : float
+@export var gp1 : Vector3
+@export var gp2 : Vector3
+
+
 @export var z_volume : float
 
 @onready var movementnode = $MovementNode
@@ -84,7 +90,6 @@ func _process(_delta) -> void:
 		$Head.rotation_degrees.x -= 1
 
 func _physics_process(delta: float) -> void:
-	#print ("mpd" + str(pitch_up))
 	export_position = $".".position
 
 #engine
@@ -110,15 +115,11 @@ func _physics_process(delta: float) -> void:
 		if roll_speed > 0:
 			roll_speed -= 0.02
 
-	#print (roll_speed)
-
 	if f_speed < ideal_speed:
 		max_roll_right = f_speed / (ideal_speed / (roll_rate * -1))
 	else:
 		max_roll_right = ((f_speed / (ideal_speed / (roll_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed / roll_rate)) * 2)
 	if Input.is_action_pressed("roll right"):
-		#print ("max roll right " + str(max_roll_right).pad_decimals(2))
-		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed > max_roll_right:
 			roll_speed -= 0.02 * roll_right
 		if roll_speed < max_roll_right:
@@ -138,8 +139,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		max_pitch_up = ((f_speed / (ideal_speed * pitch_up_rate)) - ((f_speed - ideal_speed) / (ideal_speed * pitch_down_rate)) * 2)
 	if Input.is_action_pressed("pitch up"):
-		#print ("max pitch up " + str(max_pitch_up).pad_decimals(2))
-		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed < max_pitch_up:
 			pitch_speed += 0.01 * pitch_up
 		if pitch_speed > max_pitch_up:
@@ -153,8 +152,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		max_pitch_down = ((f_speed / (ideal_speed * (pitch_down_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed * pitch_down_rate)) * 2)
 	if Input.is_action_pressed("pitch down"):
-		#print ("max pitch down " + str(max_pitch_down).pad_decimals(2))
-		#print ("pitch speed " + str(pitch_speed).pad_decimals(2))
 		if pitch_speed > max_pitch_down:
 			pitch_speed -= 0.0075 * pitch_down
 		if pitch_speed < max_pitch_down:
@@ -174,8 +171,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		max_yaw_left = ((f_speed / (ideal_speed * yaw_rate)) - ((f_speed - ideal_speed) / (ideal_speed * yaw_rate)) *2)
 	if Input.is_action_pressed("yaw left"):
-		#print ("max yaw left " + str(max_yaw_left).pad_decimals(2))
-		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed < max_yaw_left:
 			yaw_speed += 0.01 * yaw_left
 		if yaw_speed > max_yaw_right:
@@ -191,8 +186,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		max_yaw_right = ((f_speed / (ideal_speed * (yaw_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed * yaw_rate)) * 2)
 	if Input.is_action_pressed("yaw right"):
-		#print ("max yaw right " + str(max_yaw_right).pad_decimals(2))
-		#print ("yaw speed " + str(yaw_speed).pad_decimals(2))
 		if yaw_speed > max_yaw_right:
 			yaw_speed -= 0.01 * yaw_right
 		if yaw_speed < max_yaw_right:
@@ -316,6 +309,18 @@ func _physics_process(delta: float) -> void:
 
 #capture mouse etc
 
+# true_speed_calc
+	gp1 = global_position
+	true_speed = (gp2.distance_to(gp1))
+	gp2 = gp1
+	#print ("true speed " + (str(true_speed * 134).pad_decimals(0)))
+
+#calculate collision
+	if (true_speed * 134) < (f_speed):
+		print ("CRASH!")
+		$"HUD/CRASH!".show()
+	else:
+		$"HUD/CRASH!".hide()
 
 func update_speed():
 	$"B-wing/Cockpit/HUD/Label3D".text = str(f_speed * 2.236).pad_decimals(0)

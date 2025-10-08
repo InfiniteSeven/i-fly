@@ -535,7 +535,7 @@ transform = Transform3D(0.99999845, -6.750156e-14, 0.0017452986, -0.0017452986, 
 transform = Transform3D(1.0000001, 1.8526847e-15, 0, 0, 1, 0, 0, 0, 1.0000001, -0.00017718226, 0, 0.10151482)
 doppler_tracking = 2
 current = true
-far = 8000.0
+far = 32000.0
 
 [node name="ShakerComponent3D" type="Node3D" parent="Head/Camera3D"]
 transform = Transform3D(-0.099999875, -2.2967582e-07, -9.947891e-14, -2.2967602e-07, 0.099999785, 4.7683805e-08, -1.0039458e-14, 4.7683614e-08, -0.10000019, 4.246831e-07, -0.70851165, -3.6759567)
@@ -548,7 +548,7 @@ metadata/_custom_type_script = "uid://byg1yu7xs83wv"
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(0.99999994, 0, -4.371139e-08, 4.3711385e-08, 1.9106853e-15, 1, 0, -0.99999994, 1.9106855e-15, -0.18040535, 15.656267, -3.8830054)
 doppler_tracking = 2
-far = 8000.0
+far = 16000.0
 
 [node name="ShakerComponent3D" type="Node3D" parent="Camera3D2"]
 transform = Transform3D(-0.099999875, -2.2967582e-07, -9.947891e-14, -2.2967602e-07, 0.099999785, 4.7683805e-08, -1.0039458e-14, 4.7683614e-08, -0.10000019, 4.246831e-07, -0.70851165, -3.6759567)
@@ -618,6 +618,17 @@ offset_bottom = 375.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
 text = "!ВНИМАНИЕ"
+
+[node name="CRASH!" type="Label" parent="HUD"]
+visible = false
+layout_mode = 0
+offset_left = 700.0
+offset_top = 400.0
+offset_right = 1374.0
+offset_bottom = 663.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 192
+text = "CRASH!"
 
 [node name="WarningTimer" type="Timer" parent="HUD"]
 one_shot = true

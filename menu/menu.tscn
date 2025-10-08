@@ -80,6 +80,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 96
 text = "Resolutions"
 
+[node name="1600x900" type="Button" parent="CanvasLayer/Settings/Resolutions"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "1600x900"
+
 [node name="3840x2160" type="Button" parent="CanvasLayer/Settings/Resolutions"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -107,13 +114,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 2
 theme_override_font_sizes/font_size = 96
 text = "1800x1000"
-
-[node name="1600x900" type="Button" parent="CanvasLayer/Settings/Resolutions"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-theme_override_font_sizes/font_size = 96
-text = "1600x900"
 
 [node name="Back" type="VBoxContainer" parent="CanvasLayer/Settings"]
 layout_mode = 2
@@ -158,11 +158,11 @@ text = "Windowed"
 [connection signal="button_up" from="CanvasLayer/MainMenu/SETTINGS" to="." method="resolutions"]
 [connection signal="button_up" from="CanvasLayer/MainMenu/EXIT" to="." method="quit"]
 [connection signal="button_up" from="CanvasLayer/DeathScreen/Button" to="." method="death_to_main"]
+[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1600x900" to="." method="change_resolution" binds= [Vector2i(1600, 900)]]
 [connection signal="button_up" from="CanvasLayer/Settings/Resolutions/3840x2160" to="." method="change_resolution" binds= [Vector2i(3840, 2160)]]
 [connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1920x1200" to="." method="change_resolution" binds= [Vector2i(1920, 1200)]]
 [connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1920x1080" to="." method="change_resolution" binds= [Vector2i(1920, 1080)]]
 [connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1800x1000" to="." method="change_resolution" binds= [Vector2i(1800, 1000)]]
-[connection signal="button_up" from="CanvasLayer/Settings/Resolutions/1600x900" to="." method="change_resolution" binds= [Vector2i(1600, 900)]]
 [connection signal="button_up" from="CanvasLayer/Settings/Back/Back" to="." method="back_to_main"]
 [connection signal="button_up" from="CanvasLayer/Settings/Modes/Fullscreen" to="." method="change_window_mode" binds= [0]]
 [connection signal="button_up" from="CanvasLayer/Settings/Modes/Borderless" to="." method="change_window_mode" binds= [1]]
