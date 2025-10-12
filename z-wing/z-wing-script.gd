@@ -9,14 +9,14 @@ class_name z_wing
 @export_group("Speeds")
 const key_turn_speed = 0.05
 const mouse_turn_speed = 0.002
-@export var f_speed = 100.0 #forward speed
+@export var f_speed = 500.0 #forward speed
 @export var roll_speed = 0.0
 @export var pitch_speed = 0.0
 @export var yaw_speed = 0.0
 @export var roll_rate = 2.5
 @export var pitch_up_rate = 1.0
 @export var pitch_down_rate = 1.2
-@export var yaw_rate = 6.0
+@export var yaw_rate = 5.0
 @export var combined_speed = 900.0 #real top speed
 @export var top_speed = 1000.0 #must fix!
 @export var ideal_speed = 500.0
@@ -66,17 +66,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 			$Camera3D2.make_current()
 		else:
 			$Head/Camera3D.make_current()
-
-#pitch yaw
-	#1if mouse_captured == true:
-		#2if event is InputEventMouseMotion:
-			#global_rotate(-event.relative.x, 0.02 * rotation_speed)
-			#3$Head.rotate_z(-event.relative.x * mouse_turn_speed * -1)
-			#4$Head/Camera3D.rotate_x(-event.relative.y * mouse_turn_speed)
-			#camera.rotate_z(-event.relative.y * mouse_turn_speed * -1)
-
-#			movementnode.rotation.y = clamp(movementnode.rotation.y, deg_to_rad(-85), (deg_to_rad(85)))
-#			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-15), (deg_to_rad(60)))
 
 
 func _process(_delta) -> void:
@@ -172,9 +161,9 @@ func _physics_process(delta: float) -> void:
 		max_yaw_left = ((f_speed / (ideal_speed * yaw_rate)) - ((f_speed - ideal_speed) / (ideal_speed * yaw_rate)) *2)
 	if Input.is_action_pressed("yaw left"):
 		if yaw_speed < max_yaw_left:
-			yaw_speed += 0.01 * yaw_left
+			yaw_speed += 0.0025 * yaw_left
 		if yaw_speed > max_yaw_right:
-			yaw_speed -= 0.005
+			yaw_speed -= 0.0001
 	else:
 		if yaw_speed > 0:
 			yaw_speed -= 0.01
@@ -187,9 +176,9 @@ func _physics_process(delta: float) -> void:
 		max_yaw_right = ((f_speed / (ideal_speed * (yaw_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed * yaw_rate)) * 2)
 	if Input.is_action_pressed("yaw right"):
 		if yaw_speed > max_yaw_right:
-			yaw_speed -= 0.01 * yaw_right
+			yaw_speed -= 0.0025 * yaw_right
 		if yaw_speed < max_yaw_right:
-			yaw_speed += 0.005
+			yaw_speed += 0.0001
 	else:
 		if yaw_speed < 0:
 			yaw_speed += 0.01
@@ -233,28 +222,6 @@ func _physics_process(delta: float) -> void:
 	f_speed -= (f_speed / 1100)
 
 
-#forward
-#old code start
-#	throttle = Input.get_action_raw_strength("throttle")
-
-#	if Input.is_action_pressed("throttle"):
-#		if f_speed < combined_speed :
-#			f_speed += 0.5 * throttle
-#		elif f_speed > combined_speed:
-#			f_speed -= 0.2
-#	else:
-#		if f_speed > 0:
-#			f_speed -= 0.1
-
-
-#brakes
-#	brakes = Input.get_action_strength("brakes")
-
-#	if Input.is_action_pressed("brakes"):
-#		if f_speed > 0 :
-#			f_speed -= 1 * brakes
-#old code end
-
 
 	# Add the gravity.
 #	if not is_on_floor():
@@ -281,7 +248,10 @@ func _physics_process(delta: float) -> void:
 	$"B-wing/Left_Elevator".rotation_degrees.x = ((pitch_down * 20 ) + ((pitch_up * -1) * 20))
 	$"B-wing/Right_Elevator".rotation_degrees.x = (((pitch_down * -1) * 20 ) + (pitch_up * 20))
 
-
+#camera inertia
+	$Head/Camera3D.position.y = (pitch_speed * -0.05)
+	$Head/Camera3D.position.x = ((yaw_speed * 0.1) + (roll_speed * 0.05))
+	$Head/Camera3D.rotation.z = (roll_speed * -0.05)
 
 
 	move_and_collide(motion)

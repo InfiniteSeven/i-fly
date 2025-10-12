@@ -532,7 +532,7 @@ metadata/extras = {
 transform = Transform3D(0.99999845, -6.750156e-14, 0.0017452986, -0.0017452986, -7.6290974e-11, 0.99999845, 6.750156e-14, -1, -7.6290974e-11, -0.104074, -5.5460167, -1.4049321)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1.0000001, 1.8526847e-15, 0, 0, 1, 0, 0, 0, 1.0000001, -0.00017718226, 0, 0.10151482)
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -0.00017718226, 0, 0.10151482)
 doppler_tracking = 2
 current = true
 far = 32000.0
