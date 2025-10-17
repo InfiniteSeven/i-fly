@@ -61,7 +61,7 @@ sky_material = SubResource("PanoramaSkyMaterial_42pk2")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
-background_energy_multiplier = 0.5
+background_energy_multiplier = 0.25
 sky = SubResource("Sky_fxpqp")
 tonemap_mode = 2
 glow_enabled = true
@@ -239,5 +239,5 @@ data = SubResource("VoxelGIData_4ucfr")
 visible = false
 
 [node name="Z-Wing" parent="." instance=ExtResource("7_1ob52")]
-transform = Transform3D(0.031201554, -0.9995131, 4.3690104e-08, 0, -4.371139e-08, -1, 0.9995131, 0.031201554, -1.3638632e-09, 282.82126, 476.9394, 216.6077)
+transform = Transform3D(-0.2741609, 0.9616839, -4.2036547e-08, -1.1806845e-19, -4.3711392e-08, -1, -0.9616839, -0.2741609, 1.1983954e-08, 282.82126, 476.9394, 216.6077)
 throttle = 50.0

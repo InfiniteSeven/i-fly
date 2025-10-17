@@ -97,7 +97,7 @@ func _physics_process(delta: float) -> void:
 		#print ("max roll left " + str(max_roll_left).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed < max_roll_left:
-			roll_speed += 0.02 * roll_left
+			roll_speed += 0.025 * roll_left
 		if roll_speed > max_roll_left:
 			roll_speed -= 0.01
 	else:
@@ -110,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		max_roll_right = ((f_speed / (ideal_speed / (roll_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed / roll_rate)) * 2)
 	if Input.is_action_pressed("roll right"):
 		if roll_speed > max_roll_right:
-			roll_speed -= 0.02 * roll_right
+			roll_speed -= 0.025 * roll_right
 		if roll_speed < max_roll_right:
 			roll_speed += 0.01
 	else:
@@ -249,9 +249,12 @@ func _physics_process(delta: float) -> void:
 	$"B-wing/Right_Elevator".rotation_degrees.x = (((pitch_down * -1) * 20 ) + (pitch_up * 20))
 
 #camera inertia
-	$Head/Camera3D.position.y = (pitch_speed * -0.05)
-	$Head/Camera3D.position.x = ((yaw_speed * 0.1) + (roll_speed * 0.05))
-	$Head/Camera3D.rotation.z = (roll_speed * -0.05)
+	$Head/Camera3D.position.y = (pitch_speed * -0.05) #* ((f_speed - 500) / 250)
+	$Head/Camera3D.position.x = ((yaw_speed * 0.1) + (roll_speed * 0.025))
+	$Head/Camera3D.rotation.z = (roll_speed * -0.075)
+	print ($Head/Camera3D.position.y)
+	#print ($Head/Camera3D.position.x)
+	#print ($Head/Camera3D.rotation.z)
 
 
 	move_and_collide(motion)

@@ -736,45 +736,51 @@ skeleton = NodePath("")
 [node name="HUD" type="Node3D" parent="B-wing/Cockpit"]
 
 [node name="Label3D" type="Label3D" parent="B-wing/Cockpit/HUD"]
-transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47555342, 1.6450354, 0.93990993)
-modulate = Color(0, 1, 0, 1)
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.46, 1.6450354, 0.93990993)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "1000"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="Label3D2" type="Label3D" parent="B-wing/Cockpit/HUD"]
-transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47554204, 1.5449997, 0.9399977)
-modulate = Color(0, 1, 0, 1)
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.46, 1.5449997, 0.9399977)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "1000"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="Label3D3" type="Label3D" parent="B-wing/Cockpit/HUD"]
-transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.47554204, 1.4449998, 0.9399977)
-modulate = Color(0, 1, 0, 1)
+transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.46, 1.4449998, 0.9399977)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "100%"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="Label3D4" type="Label3D" parent="B-wing/Cockpit/HUD"]
 transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.6600115, 1.6450356, 0.93991184)
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "SPD"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="Label3D5" type="Label3D" parent="B-wing/Cockpit/HUD"]
 transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.66, 1.545, 0.9399996)
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "ALT"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="Label3D6" type="Label3D" parent="B-wing/Cockpit/HUD"]
 transform = Transform3D(-0.25, -5.741908e-07, 3.774895e-08, -5.741908e-07, 0.25, 1.1920929e-07, -3.7749224e-08, 1.19209204e-07, -0.25, 0.66, 1.445, 0.9399996)
-modulate = Color(0, 1, 0, 1)
+modulate = Color(0, 1, 0, 0.78431374)
+outline_modulate = Color(0, 0, 0, 0)
 text = "THR"
-font_size = 64
+font_size = 72
 horizontal_alignment = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
