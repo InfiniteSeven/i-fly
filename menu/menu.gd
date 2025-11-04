@@ -1,6 +1,6 @@
 extends Node
 @onready var menu_node = preload("res://menu/menu.tscn")
-@onready var world = preload("res://map/main.tscn")
+@onready var world = preload("res://map/map.tscn")
 @onready var main_menu = $CanvasLayer/MainMenu
 @onready var death_screen = $CanvasLayer/DeathScreen
 var mouse_captured : bool = false

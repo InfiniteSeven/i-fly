@@ -1,0 +1,472 @@
+[gd_scene load_steps=4 format=3 uid="uid://0y1ijtjxnteg"]
+
+[ext_resource type="PackedScene" uid="uid://bm33dxp0o76vp" path="res://Wide City from %22Life Support%22.glb" id="1_wcp1o"]
+[ext_resource type="Texture2D" uid="uid://cefnokpjnhl27" path="res://map/bw-grunge-texture-4.jpg" id="2_rgylq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rgylq"]
+albedo_color = Color(0.4745098, 1, 1, 1)
+albedo_texture = ExtResource("2_rgylq")
+
+[node name="Wide City" instance=ExtResource("1_wcp1o")]
+
+[node name="group266743430" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group497593918" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group229535371" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group678473692" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1576202761" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1512050533" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1937378850" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1125031243" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1340618304" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1091852460" parent="." index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1212058053" parent="." index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group94329749" parent="." index="11"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1908488143" parent="." index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group346652249" parent="." index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group85529306" parent="." index="14"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2043001566" parent="." index="15"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1668899561" parent="." index="16"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group671492207" parent="." index="17"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group295078367" parent="." index="18"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group885625615" parent="." index="19"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group196946323" parent="." index="20"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1034841771" parent="." index="21"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group47249285" parent="." index="22"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1765532531" parent="." index="23"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1577524326" parent="." index="24"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1308272376" parent="." index="25"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1522969694" parent="." index="26"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1920750356" parent="." index="27"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group240624017" parent="." index="28"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1496896083" parent="." index="29"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group959178549" parent="." index="30"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1033585333" parent="." index="31"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group296992956" parent="." index="32"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1570673053" parent="." index="33"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group481485235" parent="." index="34"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1342324470" parent="." index="35"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group100130981" parent="." index="36"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group973350115" parent="." index="37"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2065461069" parent="." index="38"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1562453047" parent="." index="39"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1365488476" parent="." index="40"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group566971977" parent="." index="41"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1899368658" parent="." index="42"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1829858795" parent="." index="43"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group69797107" parent="." index="44"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group393168460" parent="." index="45"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1631349676" parent="." index="46"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1038124126" parent="." index="47"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group791319746" parent="." index="48"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2048948135" parent="." index="49"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group822244063" parent="." index="50"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1860118834" parent="." index="51"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group256969901" parent="." index="52"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group880122935" parent="." index="53"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1173875038" parent="." index="54"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group876324920" parent="." index="55"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1341516166" parent="." index="56"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group594767238" parent="." index="57"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group403154158" parent="." index="58"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1973204459" parent="." index="59"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1275731101" parent="." index="60"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1187626178" parent="." index="61"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1467246974" parent="." index="62"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group890185058" parent="." index="63"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1793053284" parent="." index="64"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group471995821" parent="." index="65"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group591910360" parent="." index="66"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2007193942" parent="." index="67"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group647387950" parent="." index="68"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group694348133" parent="." index="69"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1287452716" parent="." index="70"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2108534235" parent="." index="71"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1732969618" parent="." index="72"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group316739679" parent="." index="73"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group177170755" parent="." index="74"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1006167426" parent="." index="75"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group581701161" parent="." index="76"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1452287724" parent="." index="77"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group969933776" parent="." index="78"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group611400264" parent="." index="79"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group408127114" parent="." index="80"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group312668800" parent="." index="81"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1932661711" parent="." index="82"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1341121099" parent="." index="83"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1458665222" parent="." index="84"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1890596229" parent="." index="85"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1994980795" parent="." index="86"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1327923439" parent="." index="87"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1367122533" parent="." index="88"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group384145070" parent="." index="89"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1422261784" parent="." index="90"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group915274332" parent="." index="91"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1610088126" parent="." index="92"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1827043354" parent="." index="93"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1193258914" parent="." index="94"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group240234841" parent="." index="95"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1660434511" parent="." index="96"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group870886499" parent="." index="97"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1227267133" parent="." index="98"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1976860158" parent="." index="99"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group402459966" parent="." index="100"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1167675827" parent="." index="101"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1661861007" parent="." index="102"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group166471606" parent="." index="103"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group906482883" parent="." index="104"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group548284571" parent="." index="105"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2147457903" parent="." index="106"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group126125875" parent="." index="107"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group58774764" parent="." index="108"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1147072476" parent="." index="109"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1945556136" parent="." index="110"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1291556029" parent="." index="111"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1372271474" parent="." index="112"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1623048872" parent="." index="113"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1372609813" parent="." index="114"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1926557448" parent="." index="115"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1824848237" parent="." index="116"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1067997525" parent="." index="117"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group651201556" parent="." index="118"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group907394462" parent="." index="119"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group512747565" parent="." index="120"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group71108611" parent="." index="121"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1264054732" parent="." index="122"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1254849613" parent="." index="123"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group34007230" parent="." index="124"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1314295789" parent="." index="125"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group169126230" parent="." index="126"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1460629703" parent="." index="127"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1500627478" parent="." index="128"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group614834146" parent="." index="129"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1795129353" parent="." index="130"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1212653224" parent="." index="131"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1078868188" parent="." index="132"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group748432904" parent="." index="133"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group471437" parent="." index="134"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group127220183" parent="." index="135"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2096947224" parent="." index="136"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1082050197" parent="." index="137"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group77228595" parent="." index="138"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group133537127" parent="." index="139"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1150897407" parent="." index="140"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group2094013725" parent="." index="141"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group671095011" parent="." index="142"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1972245924" parent="." index="143"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1911279139" parent="." index="144"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group270874631" parent="." index="145"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1528014978" parent="." index="146"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group939678396" parent="." index="147"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group390779501" parent="." index="148"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group282507775" parent="." index="149"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1321258477" parent="." index="150"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group580642939" parent="." index="151"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group697392485" parent="." index="152"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")
+
+[node name="group1433346789" parent="." index="153"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rgylq")

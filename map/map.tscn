@@ -1,0 +1,242 @@
+[gd_scene load_steps=10 format=3 uid="uid://cn4ivkm2o0qmp"]
+
+[ext_resource type="Script" uid="uid://c7o6tkjc7i8vy" path="res://map/spacemap.gd" id="1_lgq1i"]
+[ext_resource type="Texture2D" uid="uid://cpr7251o3injp" path="res://hdris/volcanic_planet_close.hdr" id="3_4hjbm"]
+[ext_resource type="PackedScene" uid="uid://demu3kka5ao7d" path="res://z-wing/space_ship.tscn" id="4_kffv2"]
+[ext_resource type="PackedScene" uid="uid://cyg0pe5qbwd8h" path="res://rock3/rock3.tscn" id="4_lgq1i"]
+[ext_resource type="Texture2D" uid="uid://c65i33payns2q" path="res://groundrock/GroundDirtRocky020_COL_4K.jpg" id="5_kffv2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kffv2"]
+panorama = ExtResource("3_4hjbm")
+
+[sub_resource type="Sky" id="Sky_kffv2"]
+sky_material = SubResource("PanoramaSkyMaterial_kffv2")
+
+[sub_resource type="Environment" id="Environment_7lyie"]
+background_mode = 2
+background_energy_multiplier = 5.0
+sky = SubResource("Sky_kffv2")
+sdfgi_read_sky_light = false
+glow_intensity = 1.31
+fog_light_energy = 0.0
+volumetric_fog_density = 0.015
+volumetric_fog_albedo = Color(0, 0.40392157, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lyie"]
+albedo_texture = ExtResource("5_kffv2")
+uv1_scale = Vector3(0.002, 0.002, 0.002)
+uv1_triplanar = true
+
+[node name="Map" type="Node3D"]
+script = ExtResource("1_lgq1i")
+
+[node name="SpaceShip" parent="." instance=ExtResource("4_kffv2")]
+transform = Transform3D(-0.072402656, 0.9973755, -4.3596668e-08, 0, -4.371139e-08, -1, -0.9973755, -0.072402656, 3.1648206e-09, 1955.0481, 0, 0)
+pitch_up_rate = 0.5
+pitch_up_increase = 0.05
+pitch_down_rate = 0.6
+pitch_down_increase = 0.04
+yaw_rate = 3.0
+yaw_increase = 0.02
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7lyie")
+
+[node name="Rocks" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5434.1426, 0, 0)
+
+[node name="Rock3" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -1836.19, 0, 0)
+
+[node name="Rock4" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-991.5334, 65.66435, 112.02443, 65.24923, 997.8416, -7.371923, -112.26672, 0, -993.678, -2734.4155, 0, 9.039124)
+
+[node name="Rock5" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(365.92596, -51.569263, -929.2141, -108.85089, -993.982, 12.298084, -924.2561, 96.64557, -369.33716, -3173.6118, 651.4143, 9.039124)
+
+[node name="Rock6" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-698.3152, 662.2813, 271.54944, 99.696434, -285.6806, 953.1249, 708.81287, 692.6542, 133.46796, -4086.2656, 651.4143, -305.13727)
+
+[node name="Rock7" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(771.0125, -583.3227, -255.48724, 99.696434, -285.68054, 953.1247, -628.9668, -760.34265, -162.10808, -4192.617, 651.4143, -798.52)
+
+[node name="Rock8" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(1447.1604, 678.33734, 127.632126, 199.39282, -285.6805, 953.1249, 1366.0048, -676.938, -274.3406, -4773.2275, 651.4143, -54.9245)
+
+[node name="Rock9" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(1265.3691, -718.10944, 289.8776, -208.66855, -449.95105, -886.93744, 1534.6978, 530.9076, -359.60056, -5074.079, 651.4143, 878.3873)
+
+[node name="Rock10" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(2981.8098, -16.053558, -108.77693, -313.00293, -449.95102, -886.9377, -104.11736, 892.909, -448.89767, -3417.8481, 349.17798, 1549.7415)
+
+[node name="Rock11" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-2870.7307, -192.80469, -217.13925, 137.53232, -838.6931, 542.67145, -860.22815, 509.33322, 811.3929, -3453.7095, 1172.4238, 1602.1975)
+
+[node name="Rock12" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(166.31122, -2853.24, -260.36005, -958.6644, -653.3128, 183.13464, -230.87454, 657.42163, -947.9844, -241.08447, 504.06226, 1602.1975)
+
+[node name="Rock13" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-352.71356, -340.19388, -99.304016, -327.11755, 258.6276, 275.87292, -136.33504, 259.57642, -405.0097, -2561.454, 214.52289, 1952.4124)
+
+[node name="Rock14" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(226.18982, 426.14395, -131.2993, -327.11758, 258.62762, 275.87296, 303.0384, -38.898643, 395.7962, -5124.033, 501.32806, 1644.7593)
+
+[node name="Rock15" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(977.74084, -720.4847, -491.8407, 181.59857, 602.7704, -792.7314, 1735.2358, 342.8841, 360.09592, -5785.5684, -147.77527, -25.348694)
+
+[node name="Rock16" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(2990.5664, -70.63391, -35.92734, 40.087067, 596.69476, -802.3573, 234.33379, 799.354, 595.762, -4002.539, -750.55725, 1146.0487)
+
+[node name="Rock17" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-2959.2349, -162.9511, 20.953474, -8.422638, 144.23798, 989.53894, -492.80643, 976.034, -142.73557, -4038.4004, -488.5165, 424.65137)
+
+[node name="Rock18" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(351.99722, -2807.9841, -3.4257817, -536.0176, -595.7268, -820.52, 767.32214, 871.971, -571.6078, -825.7759, -410.1292, 903.797)
+
+[node name="Rock27" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-209.76347, 2899.258, -148.43478, 370.4858, -185.79126, -926.7716, -904.84265, -748.18665, -345.05386, -3355.1294, -215.3743, 549.4093)
+
+[node name="Rock28" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(519.2952, 2463.3508, -236.85382, -143.27467, 1070.6422, 923.09766, 842.49945, -1336.2742, 302.97162, -2453.7852, -726.0332, 2336.5015)
+
+[node name="Rock19" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(126.22582, 479.0073, -67.96401, 421.68427, -74.49511, 258.13354, 237.16965, -122.484924, -422.786, -2418.853, -265.5545, 1640.0042)
+
+[node name="Rock20" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(241.4561, 390.40192, -198.20514, 160.37614, 131.75342, 454.8852, 407.40448, -283.2444, -61.59707, -5792.9736, -374.60107, 1111.335)
+
+[node name="Rock21" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(1437.6552, 437.52405, -540.24, -352.80106, 866.4736, 467.0177, 1344.871, -240.40656, 700.02484, -5469.8184, -419.92206, 158.64056)
+
+[node name="Rock22" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(1965.7318, 129.28812, 131.37245, -352.80106, 866.4736, 467.0177, -106.901855, -482.18994, 874.43427, -5254.162, -419.92206, 2168.5845)
+
+[node name="Rock23" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(495.1045, 467.57416, -848.5823, -312.43762, 883.6456, 441.32175, 1912.3939, 23.314316, 291.79227, -6491.744, -800.9299, 28.305054)
+
+[node name="Rock24" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(-96.33641, 2203.8064, -671.6239, -975.5569, 192.61789, 210.15857, 197.50533, 2026.3594, 710.4609, -5330.6914, 976.16693, -1111.1368)
+
+[node name="Rock25" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(2980.9773, 108.28247, -30.281113, 273.7911, -619.43677, 779.72394, 197.01941, -777.54315, -625.39136, -2510.0415, 1549.3865, 522.2982)
+
+[node name="Rock26" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(2121.8513, 677.38495, 202.23695, 199.41827, -348.5366, 934.93567, 2111.394, -647.82117, -291.54205, -5343.578, 1353.5496, 1302.33)
+
+[node name="Rock29" parent="Rocks" instance=ExtResource("4_lgq1i")]
+transform = Transform3D(17.850363, 14.92464, -2497.2917, 471.53595, -165.86842, 59.480053, -165.33365, -471.44983, -99.98315, -3954.3687, -34.590515, 686.01495)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.31667557, 0, 0.9485339, 0, 1, 0, -0.9485339, 0, -0.31667557, 0, 0, 0)
+light_color = Color(1, 0.9607843, 0.9490196, 1)
+light_bake_mode = 1
+
+[node name="CanyonsGroup" type="Node3D" parent="."]
+
+[node name="Canyons" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6587.653, 304.42096, 1116.4384)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, 400)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 800, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, -400)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="Canyons2" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(0.6883546, 0, -0.72537434, 0, 1, 0, 0.72537434, 0, 0.6883546, -10438.438, 443.7509, 138.58618)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, 250)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons2"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons2"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, -250)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="Canyons3" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8568.348, 304.42096, 1116.4384)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons3"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, 400)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons3"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 800, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons3"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 500, -400)
+size = Vector3(5, 1000, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="Canyons4" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(0.96363044, 0, -0.26723838, 0, 1, 0, 0.26723838, 0, 0.96363044, -12060.979, 443.7509, -844.5869)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, 250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons4"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, -250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="Canyons5" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(0.96363044, 0, -0.26723838, 0, 1, 0, 0.26723838, 0, 0.96363044, -12060.979, 443.7509, -844.5869)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons5"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, 250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons5"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons5"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, -250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="Canyons6" type="Node3D" parent="CanyonsGroup"]
+transform = Transform3D(0.9748892, 0.18572319, 0.12287339, -0.12287339, 0.9087911, -0.39874908, -0.18572319, 0.37363833, 0.9087911, -13920.096, 597.6819, -997.37274)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CanyonsGroup/Canyons6"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, 250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CanyonsGroup/Canyons6"]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0, 0)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CanyonsGroup/Canyons6"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 250, -250)
+size = Vector3(5, 500, 2000)
+material = SubResource("StandardMaterial3D_7lyie")

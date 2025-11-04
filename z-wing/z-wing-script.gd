@@ -15,7 +15,7 @@ const mouse_turn_speed = 0.002
 @export var yaw_speed = 0.0
 @export var roll_rate = 2.5
 @export var pitch_up_rate = 1.0
-@export var pitch_down_rate = 1.2
+@export var pitch_down_rate = 1.1
 @export var yaw_rate = 5.0
 @export var combined_speed = 900.0 #real top speed
 @export var top_speed = 1000.0 #must fix!
@@ -54,6 +54,7 @@ var max_yaw_right
 @export var throttle_sub : float
 var brakes
 
+var joystick_mode = false
 
 func _ready():
 	pass
@@ -67,19 +68,34 @@ func _unhandled_input(_event: InputEvent) -> void:
 		else:
 			$Head/Camera3D.make_current()
 
+	if Input.is_action_just_pressed("joystick mode"):
+		if joystick_mode == true:
+			joystick_mode = false
+		else:
+			joystick_mode = true
+
+
 
 func _process(_delta) -> void:
-	if Input.is_action_pressed("camera up"):
-		$Head/Camera3D.rotation_degrees.x += 1
-	if Input.is_action_pressed("camera down"):
-		$Head/Camera3D.rotation_degrees.x -= 1
-	if Input.is_action_pressed("camera left"):
-		$Head.rotation_degrees.x += 1
-	if Input.is_action_pressed("camera right"):
-		$Head.rotation_degrees.x -= 1
+	pass
+
 
 func _physics_process(delta: float) -> void:
 	export_position = $".".position
+
+#camera controls
+	if Input.is_action_pressed("camera up"):
+		if $Head/Camera3D.rotation_degrees.x < 50:
+			$Head/Camera3D.rotation_degrees.x += 1
+	if Input.is_action_pressed("camera down"):
+		if $Head/Camera3D.rotation_degrees.x > -50:
+			$Head/Camera3D.rotation_degrees.x -= 1
+	if Input.is_action_pressed("camera left"):
+		if $Head.rotation_degrees.x < -40:
+			$Head.rotation_degrees.x += 1
+	if Input.is_action_pressed("camera right"):
+		if $Head.rotation_degrees.x > -130:
+			$Head.rotation_degrees.x -= 1
 
 #engine
 	$MeshInstance3D/Engine.material.emission_energy_multiplier = 2.5 + (throttle * 0.1)
@@ -97,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		#print ("max roll left " + str(max_roll_left).pad_decimals(2))
 		#print ("roll speed " + str(roll_speed).pad_decimals(2))
 		if roll_speed < max_roll_left:
-			roll_speed += 0.025 * roll_left
+			roll_speed += 0.05 * roll_left
 		if roll_speed > max_roll_left:
 			roll_speed -= 0.01
 	else:
@@ -110,7 +126,7 @@ func _physics_process(delta: float) -> void:
 		max_roll_right = ((f_speed / (ideal_speed / (roll_rate * -1))) + ((f_speed - ideal_speed) / (ideal_speed / roll_rate)) * 2)
 	if Input.is_action_pressed("roll right"):
 		if roll_speed > max_roll_right:
-			roll_speed -= 0.025 * roll_right
+			roll_speed -= 0.05 * roll_right
 		if roll_speed < max_roll_right:
 			roll_speed += 0.01
 	else:
@@ -205,9 +221,20 @@ func _physics_process(delta: float) -> void:
 
 	combined_speed = top_speed - ((speed_p + speed_y)*10)
 
+
+
+
 #new throttle code
+	if joystick_mode == true:
+		if (Input.get_action_raw_strength("throttle axis n")) > 0:
+			throttle = 50 - ((Input.get_action_raw_strength("throttle axis n")) * 50)
+		#throttle = Input.get_action_raw_strength("throttle axis n")
+		else:
+			throttle = (Input.get_action_raw_strength("throttle axis p") * 50) + 50.4
+
 	throttle_add = Input.get_action_raw_strength("throttle") * 0.35
 	throttle_sub = Input.get_action_raw_strength("brakes") * 0.35
+
 
 	if throttle < 100:
 		throttle += throttle_add
@@ -250,9 +277,9 @@ func _physics_process(delta: float) -> void:
 
 #camera inertia
 	$Head/Camera3D.position.y = (pitch_speed * -0.05) #* ((f_speed - 500) / 250)
-	$Head/Camera3D.position.x = ((yaw_speed * 0.1) + (roll_speed * 0.025))
-	$Head/Camera3D.rotation.z = (roll_speed * -0.075)
-	print ($Head/Camera3D.position.y)
+	$Head/Camera3D.position.x = ((yaw_speed * 0.1) + (roll_speed * 0.05))
+	$Head/Camera3D.rotation.z = (roll_speed * -0.05)
+	#print ($Head/Camera3D.position.y)
 	#print ($Head/Camera3D.position.x)
 	#print ($Head/Camera3D.rotation.z)
 

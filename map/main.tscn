@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=4 uid="uid://4ylkv5tiu1a5"]
 
+[ext_resource type="Texture2D" uid="uid://cpr7251o3injp" path="res://hdris/volcanic_planet_close.hdr" id="1_kdw7h"]
 [ext_resource type="PackedScene" uid="uid://c17ffjmha2joh" path="res://menu/pause_menu.tscn" id="1_ukg08"]
-[ext_resource type="Texture2D" uid="uid://2ol7x0l2gb3o" path="res://citrus_orchard_puresky_4k.exr" id="1_vknsq"]
 [ext_resource type="PackedScene" uid="uid://cg8n1riwughxg" path="res://sam/sam.tscn" id="2_ukg08"]
 [ext_resource type="Texture2D" uid="uid://cefnokpjnhl27" path="res://map/bw-grunge-texture-4.jpg" id="3_kdw7h"]
-[ext_resource type="PackedScene" uid="uid://cpcmpd75skbkr" path="res://do_onut.tscn" id="7_1ob52"]
+[ext_resource type="PackedScene" uid="uid://cpcmpd75skbkr" path="res://z-wing/do_onut.tscn" id="7_1ob52"]
 
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 resource_name = "main script"
@@ -54,14 +54,14 @@ func pause_menu():
 "
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_42pk2"]
-panorama = ExtResource("1_vknsq")
+panorama = ExtResource("1_kdw7h")
+energy_multiplier = 8.0
 
 [sub_resource type="Sky" id="Sky_fxpqp"]
 sky_material = SubResource("PanoramaSkyMaterial_42pk2")
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 background_mode = 2
-background_energy_multiplier = 0.25
 sky = SubResource("Sky_fxpqp")
 tonemap_mode = 2
 glow_enabled = true
@@ -115,7 +115,7 @@ script = SubResource("GDScript_ig7tw")
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 1568.9001, 1629.6001, -2528.6)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 4287.582, 109.60025, -268.9955)
 light_color = Color(0.95686275, 0.9137255, 0.60784316, 1)
 light_energy = 0.25
 light_bake_mode = 1
